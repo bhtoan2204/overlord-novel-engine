@@ -42,10 +42,24 @@ def write_scene(
         {"role": "system", "content": system},
         {"role": "user", "content": json.dumps(user, ensure_ascii=False)},
     ]
+    if getattr(backend, "name", "") != "scripted":
+        from app.narrative.prose import write_scene_chunks
+
+        return write_scene_chunks(
+            backend,
+            spec,
+            context_pack,
+            settings,
+            revise=revise,
+            previous_prose=previous_prose,
+            recommendations=recommendations,
+            preference_notes=preference_notes,
+        )
     generation = GenerationSettings(
         temperature=settings.temperature_write,
         seed=settings.seed,
         max_tokens=min(4096, max(600, spec.target_word_count * 3)),
         task="revise" if revise else "write",
+        json_object=True,
     )
     return generate_model(backend, messages, generation, DraftOutput, settings.max_json_attempts)

@@ -3,7 +3,7 @@
 import json
 import re
 
-from app.core.text import extract_json_blob
+from app.core.text import extract_json_blob, word_count
 from app.inference.base import GenerationSettings
 
 
@@ -117,6 +117,15 @@ def _write(payload: dict, revise: bool) -> dict:
             f"— Nói rõ mục tiêu, — {viewpoint} bảo. — Không có chiến thắng nào đáng đổi bằng một sai lầm mà chúng ta đã trả giá một lần."
         )
     prose = "\n\n".join(paragraphs)
+    target = int(spec.get("target_word_count") or 0)
+    step = 0
+    while target >= 600 and word_count(prose) < int(target * 0.75):
+        step += 1
+        paragraphs.append(
+            f"Nhịp {step}. {viewpoint} ở {location} không thêm phép mới. "
+            f"Người trong cảnh giữ đúng việc đã nêu, và hệ quả thứ {step} chỉ làm rõ cái giá chính trị của quyết định ấy."
+        )
+        prose = "\n\n".join(paragraphs)
     diff = {
         "recent_events": events,
         "character_updates": [],

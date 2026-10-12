@@ -13,6 +13,7 @@ from app.core.config import Settings
 from app.core.errors import InferenceError, ResourceError
 from app.core.logging import get_logger, strip_think
 from app.inference.base import GenerationResult, GenerationSettings
+from app.inference.budget import completion_budget
 from app.inference.gate import GATE
 from app.inference.resources import LaunchPlan, apply_cpu_affinity, plan_launch, probe_gpu
 
@@ -151,45 +152,73 @@ class LlamaCppBackend:
             time.sleep(1)
         raise InferenceError(f"llama-server did not become healthy: {last}")
 
+    def count_tokens(self, messages: list[dict]) -> int:
+        """Ask llama-server to count the prompt. Fall back to a word estimate."""
+        self.ensure_started()
+        url = f"http://{self.settings.llama_server_host}:{self.settings.llama_server_port}/tokenize"
+        content = "\n".join(message.get("content") or "" for message in messages)
+        try:
+            response = httpx.post(url, json={"content": content}, timeout=30.0)
+            if response.status_code == 200:
+                data = response.json()
+                tokens = data.get("tokens")
+                if isinstance(tokens, list):
+                    return len(tokens)
+                if isinstance(data.get("tokens"), int):
+                    return int(data["tokens"])
+        except httpx.HTTPError:
+            pass
+        from app.core.text import estimate_tokens
+
+        return estimate_tokens(content) + 32
+
     def generate(self, messages: list[dict], settings: GenerationSettings) -> GenerationResult:
         self.ensure_started()
-        # Keep completion room inside the context chosen by the VRAM plan.
-        # Prompt tokens are not known yet, so a fixed reserve avoids a context overflow.
         context_limit = self.plan.context_tokens if self.plan else self.settings.context_tokens
-        max_tokens = min(settings.max_tokens, 512, max(128, context_limit // 6))
+        prompt_tokens = self.count_tokens(messages)
+        max_tokens = completion_budget(context_limit, prompt_tokens, settings.max_tokens)
         body = {
             "messages": messages,
             "temperature": settings.temperature,
             "seed": settings.seed,
             "max_tokens": max_tokens,
             "chat_template_kwargs": {"enable_thinking": False},
-            "response_format": {"type": "json_object"},
         }
+        if settings.json_object:
+            body["response_format"] = {"type": "json_object"}
         url = f"http://{self.settings.llama_server_host}:{self.settings.llama_server_port}/v1/chat/completions"
         try:
             response = httpx.post(url, json=body, timeout=600.0)
             response.raise_for_status()
         except httpx.HTTPError as exc:
             detail = ""
-            response = getattr(exc, "response", None)
-            if response is not None:
-                detail = response.text[:500]
+            response_obj = getattr(exc, "response", None)
+            if response_obj is not None:
+                detail = response_obj.text[:500]
+            if "exceed_context_size_error" in detail:
+                raise InferenceError(f"Context overflow: {detail}") from exc
             raise InferenceError(f"llama-server request failed: {exc} {detail}") from exc
         data = response.json()
-        message = data["choices"][0]["message"]
+        choice = data["choices"][0]
+        message = choice["message"]
         text = strip_think(message.get("content") or "")
         usage = data.get("usage") or {}
+        finish = choice.get("finish_reason") or "stop"
+        if finish == "length":
+            finish = "truncation"
         log.info(
-            "generation task=%s prompt_tokens=%s completion_tokens=%s",
+            "generation task=%s prompt_tokens=%s completion_tokens=%s finish=%s",
             settings.task,
-            usage.get("prompt_tokens", 0),
+            usage.get("prompt_tokens", prompt_tokens),
             usage.get("completion_tokens", 0),
+            finish,
         )
         return GenerationResult(
             text=text,
-            prompt_tokens=int(usage.get("prompt_tokens") or 0),
+            prompt_tokens=int(usage.get("prompt_tokens") or prompt_tokens),
             completion_tokens=int(usage.get("completion_tokens") or 0),
             model=self.model_key,
+            finish_reason=finish,
         )
 
     def health(self) -> dict:

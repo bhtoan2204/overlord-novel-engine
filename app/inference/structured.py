@@ -30,6 +30,7 @@ def generate_model(
     )
     last_error: Exception | None = None
     for _ in range(attempts):
+        settings.json_object = True
         result = backend.generate(conversation, settings)
         try:
             data = json.loads(extract_json_blob(result.text))

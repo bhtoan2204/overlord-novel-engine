@@ -3,6 +3,8 @@
 {% block body %}
 <h1>Generation</h1>
 <p>State: <strong>{{ project.workflow_state }}</strong>. One scene at a time. Background start is capped at three scenes so a click cannot launch the whole volume.</p>
+<p>Approved scenes: {{ scenes_done }}/{{ scenes_total }}. Stored Vietnamese words: {{ words }}.</p>
+<p>GPU free {{ gpu.free_mb }} MB of {{ gpu.total_mb }} MB. Name: {{ gpu.name or "none" }}.</p>
 <form action="/generate/step" method="post"><button type="submit">Generate next scene</button></form>
 <form action="/generate/start" method="post" class="inline">
   <label>Scenes <input name="limit_scenes" type="number" min="1" max="3" value="1"></label>

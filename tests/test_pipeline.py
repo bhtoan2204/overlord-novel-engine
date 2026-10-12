@@ -40,6 +40,7 @@ def test_revision_fixes_an_injected_contradiction(app, session):
     approve_outline(session, project)
     session.commit()
     scene = session.query(OutlineNode).filter(OutlineNode.level == "scene").first()
+    scene.payload = {**scene.payload, "target_word_count": 40}
     event = scene.payload["required_events"][0]
     bad = {
         "prose": f"Ainz Ooal Gown là một nông dân loài người, không biết phép thuật.\n\n{event}",

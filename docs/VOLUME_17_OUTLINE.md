@@ -1,103 +1,122 @@
-# Overlord — Tập 17 (fanfiction không chính thức)
+# Tập 17 không chính thức — Thần quyền quốc Slane sụp đổ
 
-> Tác phẩm fanfiction không chính thức, do người đọc sáng tác tiếp sau Tập 16. Không phải tập truyện của Kugane Maruyama, không được tác giả chấp thuận, và không thuộc chính sử.
+Đây là fanfiction, không phải chính sử của Kugane Maruyama. Văn xuôi đầy đủ chưa được sinh. Tài liệu này là dàn ý.
 
-Nguồn lập dàn ý: ghi chú nghiên cứu gốc `USER_INTERPRETATION`, không phải nguyên văn tập 16 và không phải dự đoán chính thức.
+Nhánh được chọn: theocracy-collapse. Chính quyền trung ương của Thần quyền quốc Slane sụp trong tập này.
 
-Ngay sau Tập 16, Ainz đã biết Thần quyền quốc Slane đứng sau việc Shalltear bị điều khiển và đã ra lệnh chuẩn bị tiêu diệt họ. Bản thảo này không coi lệnh đó là một trận kết thúc. Nazarick phải đánh một chiến dịch có giới hạn, vì Bảo vật thế giới vẫn còn ngoài tầm tay, các nước láng giềng đang nhìn, và Albedo đang giữ một bí mật mà Ainz không biết.
+Mục tiêu: khoảng 60.000 từ tiếng Việt, 52 cảnh, khoảng 1.150 từ mỗi cảnh khi mục tiêu tập là 60.000. Đó là mục tiêu kế hoạch.
 
-## Nhánh được chọn
+Bản dàn ý cũ, dừng trước khi Thần quyền quốc bị đánh bại, vẫn nằm trong cơ sở dữ liệu của dự án đã duyệt cảnh mock. Bản này không ghi đè cảnh đã duyệt.
 
-staged-campaign
+## Quyết định chiến tranh
 
-## Phương án khác, không được lấy làm việc đã xảy ra
+### Lời mở — Lệnh đã ban (prologue)
 
-- Nhánh bị loại trong bản thảo này: hủy diệt Thần quyền quốc Slane ngay trong một đêm. Nhánh đó bỏ qua rủi ro Bảo vật thế giới và làm mất phần chính trị.
-- Chưa có cứ liệu về việc Long vương Bạch kim có can thiệp. Nếu can thiệp, đó là biến số của tập sau, không phải việc đã xảy ra.
-- Tương lai chính thức của cuộc chiến này chưa được viết. Mọi diễn tiến sau lệnh là fanfiction.
-- Không có cứ liệu nào cho thấy Ainz sẽ bỏ vai diễn này.
-- Chưa có bằng chứng về việc Long vương Bạch kim sẽ can thiệp. Không được viết sự can thiệp ấy như việc đã xảy ra.
-- Việc giết hay thu nhận Antilene đều chưa được chính sử quyết định.
-- Ainz không biết bí mật này ở thời điểm cuối tập 16.
+Ainz giữ lệnh chuẩn bị tiêu diệt Thần quyền quốc Slane, và Nazarick phải biến lệnh đó thành một chiến dịch có thể chịu được Bảo vật thế giới.
 
-## Mệnh lệnh và nỗi sợ Bảo vật thế giới
+- Phòng làm việc sau cơn giận — điểm nhìn Ainz Ooal Gown, phòng làm việc của Ainz. Ainz giữ nguyên lệnh chuẩn bị tiêu diệt Thần quyền quốc Slane.
+- Câu hỏi Shalltear không dám hỏi — điểm nhìn Shalltear Bloodfallen, hành lang tầng chín. Shalltear biết chiến dịch bắt đầu vì cô từng bị điều khiển.
+- Demiurge vẽ chiến dịch — điểm nhìn Demiurge, phòng kế hoạch. Demiurge nói rõ Nazarick chưa biết hết Bảo vật thế giới còn lại của Thần quyền quốc Slane.
+- Albedo nhận việc tình báo — điểm nhìn Albedo, văn phòng thủ hộ. Albedo nhận nhiệm vụ tìm Downfall of Castle and Country và các Bảo vật thế giới khác.
 
-### Lời mở — Mệnh lệnh còn nóng
+## Chuẩn bị và phòng thủ
 
-Ngay sau khi rời Ngục Băng, Ainz muốn trả đũa Thần quyền quốc Slane, nhưng Demiurge buộc cuộc chiến phải tính đến Bảo vật thế giới đã từng khuất phục Shalltear.
+### Nazarick xuất quân (chapter)
 
-- **Phòng làm việc sau cơn giận** — điểm nhìn Ainz Ooal Gown, Đại Lăng Nazarick.
-  - Việc bắt buộc: Ainz ra lệnh đình chỉ mọi hoạt động không phục vụ phòng thủ Đại Lăng Nazarick.
-- **Câu hỏi mà chiến thắng cũ không trả lời** — điểm nhìn Demiurge, Đại Lăng Nazarick.
-  - Việc bắt buộc: Demiurge nêu rủi ro Bảo vật thế giới từng dùng để điều khiển Shalltear.
+Các Thủ hộ tầng nhận nhiệm vụ có giới hạn. Sức mạnh không phải vấn đề. Vấn đề là món đồ có thể cướp quyền điều khiển.
 
-### Chương 1 — Vết thương của Shalltear
+- Cocytus nhận mặt trận — điểm nhìn Cocytus, sân luyện tầng năm. Cocytus nhận lệnh rút khi thấy dấu hiệu Bảo vật thế giới.
+- Aura và Mare mở đường — điểm nhìn Aura Bella Fiora, rừng rìa lãnh thổ. Aura Bella Fiora đánh dấu đường tiếp tế chứ không mở cuộc tàn sát.
+- Sebas ở kinh đô — điểm nhìn Sebas Tian, kinh đô Vương quốc Pháp thuật. Sebas Tian được lệnh giữ sự ổn định ở kinh đô.
+- Shalltear xin một nhiệm vụ có giới hạn — điểm nhìn Shalltear Bloodfallen, phòng ngai. Ainz không cho Shalltear Bloodfallen dẫn mũi nhọn.
+- Pandora's Actor đóng vai Pháp vương — điểm nhìn Pandora's Actor, phòng gương. Pandora's Actor nhận vai giữ lễ ở kinh đô.
+- Kho chưa kiểm được — điểm nhìn Demiurge, kho hồ sơ. Demiurge ghi các lỗ hổng tình báo vào kế hoạch, không giả vờ đã biết hết.
 
-Shalltear biết cuộc chiến này bắt đầu từ nỗi nhục của chính mình. Cô muốn được dùng, nhưng không muốn được an ủi.
+### Thần quyền quốc nghe tiếng bước (chapter)
 
-Nguyên nhân nối tiếp: Lời mở — Mệnh lệnh còn nóng
+Slane nhận ra Vương quốc Pháp thuật không còn chờ. Họ chuẩn bị bằng đức tin, quân đội và món đồ họ không dám dùng bừa.
 
-- **Người từng bị gọi tên** — điểm nhìn Shalltear Bloodfallen, Đại Lăng Nazarick.
-  - Việc bắt buộc: Shalltear nhận ra Thần quyền quốc Slane là phía đã điều khiển mình.
+- Đền không ngủ — điểm nhìn giáo sĩ trực, thánh điện trung ương. Giáo sĩ trực kết luận không thể thắng Nazarick bằng một trận tay đôi.
+- Hắc điển được gọi — điểm nhìn chỉ huy Hắc điển, doanh trại Hắc điển. Chỉ huy Hắc điển giữ món đồ điều khiển ở hậu phương.
+- Dân thành nghe chuông — điểm nhìn thị dân, phố dưới thánh điện. Thị dân nghe chuông chiến tranh mà chưa có đường sơ tán.
+- Giáo hội tranh nhau lời thần — điểm nhìn thượng tế, phòng hội đồng. Thượng tế hoãn việc dùng lại Bảo vật thế giới vì sợ phản tác dụng.
+- Biên giới đóng cửa — điểm nhìn chỉ huy biên phòng, cửa khẩu phía nam. Chỉ huy biên phòng đóng cửa khẩu phía nam.
 
-## Bàn cờ quanh cuộc chiến sắp tới
+## Tình báo và những trận đầu
 
-### Chương 2 — Các nước nghe thấy tiếng thu quân
+### Tìm món đồ, không tìm vinh quang (chapter)
 
-Đế quốc Baharuth, phần còn lại của Thánh quốc và những kẻ theo dõi Long vương Bạch kim phải đoán vì sao Vương quốc Pháp thuật đột ngột im mọi việc khác.
+Albedo tìm Downfall of Castle and Country. Demiurge không được biết mọi bí mật của cô.
 
-Nguyên nhân nối tiếp: Chương 1 — Vết thương của Shalltear
+- Câu hỏi với người trong băng — điểm nhìn Albedo, Ngục Băng. Antilene không khai ra vị trí Downfall of Castle and Country.
+- Mạng lưới ngoài lăng — điểm nhìn Albedo, văn phòng thủ hộ. Albedo không nhắc đơn vị bí mật với Ainz Ooal Gown.
+- Demiurge thiếu một mảnh — điểm nhìn Demiurge, phòng kế hoạch. Demiurge nhận ra mình thiếu dữ liệu mà Albedo chưa đưa.
+- Bản đồ đức tin — điểm nhìn Nabe, thị trấn biên giới. Nabe khoanh vùng một kho phụ chứ không tìm thấy Downfall of Castle and Country.
+- Tin đồn từ nước láng giềng — điểm nhìn Ainz Ooal Gown, phòng khách ngoại giao. Sứ giả hỏi liệu Thần quyền quốc Slane có còn tồn tại sau chiến dịch.
+- Kho trống — điểm nhìn Demiurge, báo cáo đêm. Demiurge báo địa điểm nghi ngờ không chứa Bảo vật thế giới.
 
-- **Sứ quán không nhận được câu trả lời** — điểm nhìn Jircniv Rune Farlord El Nix, Đế quốc Baharuth.
-  - Việc bắt buộc: Jircniv nhận thấy Vương quốc Pháp thuật đình chỉ các hoạt động đối ngoại thường lệ.
+### Những trận không phải là kết thúc (chapter)
 
-## Rừng elf và người tù
+Va chạm đầu tiên làm lộ tính toán sai của cả hai bên, chưa hạ được thánh điện.
 
-### Chương 3 — Ngôi trống và Ngục Băng
+- Cửa khẩu vỡ — điểm nhìn Cocytus, cửa khẩu phía nam. Cocytus chiếm cửa khẩu rồi dừng vì chưa thấy dấu hiệu Bảo vật thế giới.
+- Phép thuật kinh hoàng và một cái bẫy không nổ — điểm nhìn chỉ huy biên phòng, đồn phía nam. Chỉ huy biên phòng rút lui để khỏi lộ món đồ điều khiển.
+- Nước láng giềng đóng cửa — điểm nhìn sứ giả, triều đình láng giềng. Sứ giả báo nước mình trung lập và đóng cửa.
+- Ainz diễn trước triều thần — điểm nhìn Ainz Ooal Gown, phòng khách. Ainz nói với triều thần rằng đây là hình phạt, không phải chinh phục vô hạn.
+- Shalltear nhìn bản đồ từ xa — điểm nhìn Shalltear Bloodfallen, ban công lăng. Shalltear Bloodfallen ở lại Đại Lăng Nazarick trong trận đầu.
+- Sai một nhịp — điểm nhìn Demiurge, bàn bản đồ. Demiurge thừa nhận đã tính sai tốc độ rút của Thần quyền quốc Slane.
 
-Cái chết của Decem để lại một vương quốc không còn vua, trong khi Antilene sống và đang bị hỏi về Hắc điển.
+## Hắc điển và sụp đổ
 
-Nguyên nhân nối tiếp: Chương 2 — Các nước nghe thấy tiếng thu quân
+### Hắc điển (chapter)
 
-- **Kho báu không phải là một vương quốc** — điểm nhìn Aura Bella Fiora, Vương quốc Elf.
-  - Việc bắt buộc: Aura xác nhận Decem Hougan đã chết và vương quốc elf không còn người trị vì.
-- **Điều Antilene còn giữ** — điểm nhìn Ainz Ooal Gown, Ngục Băng.
-  - Việc bắt buộc: Antilene vẫn còn sống trong Ngục Băng và chưa khai vị trí Bảo vật thế giới.
+Bước ngoặt là món đồ và những người được giao giữ nó, không phải một trận đấu ngang tài.
 
-### Chương giữa — Công việc Albedo không ghi vào biên bản
+- Đêm trước khi món đồ rời kho — điểm nhìn chỉ huy Hắc điển, hầm thánh. Chỉ huy Hắc điển chưa dám đưa Downfall of Castle and Country ra trận.
+- Shalltear được gọi, với một sợi xích — điểm nhìn Ainz Ooal Gown, phòng ngai. Ainz giao Shalltear Bloodfallen một nhiệm vụ hẹp với điều kiện rút ngay.
+- Gặp nhau không phải để so kiếm — điểm nhìn Shalltear Bloodfallen, đồi thông. Shalltear Bloodfallen không lao vào khi thấy dấu hiệu Bảo vật thế giới.
+- Món đồ được giấu lần nữa — điểm nhìn chỉ huy Hắc điển, hầm phụ. Chỉ huy Hắc điển rút khỏi đồi thông và để lộ hướng kho.
+- Albedo khóa hướng — điểm nhìn Albedo, bàn tình báo. Albedo đưa cho Demiurge hướng kho, không đưa bí mật riêng.
+- Ainz quyết định không hủy cả nước trong một đêm — điểm nhìn Ainz Ooal Gown, bàn bản đồ. Ainz chọn đánh sụp chính quyền trung ương thay vì xóa mọi thành phố.
 
-Lệnh điều động toàn bộ thủ hộ tầng suýt kéo đơn vị bí mật của Albedo ra ánh sáng. Cô che nó thêm một lần, và biết là không che được mãi.
+### Phòng tuyến gãy (chapter)
 
-Nguyên nhân nối tiếp: Chương 3 — Ngôi trống và Ngục Băng
+Khi kho và đường rút không còn, quân Slane không còn cách giữ một mặt trận.
 
-- **Danh sách không được trình** — điểm nhìn Albedo, Đại Lăng Nazarick.
-  - Việc bắt buộc: Albedo giấu Ainz việc đơn vị bí mật của cô đang tìm dấu vết các Đấng Tối Cao khác.
+- Kho phụ thất thủ — điểm nhìn Cocytus, kho phụ. Cocytus chiếm kho phụ và không thấy Downfall of Castle and Country.
+- Thánh điện mất liên lạc với biên giới — điểm nhìn thượng tế, phòng hội đồng. Thượng tế mất liên lạc với cửa khẩu phía nam.
+- Đường rút của dân — điểm nhìn thị dân, phố dưới. Thị dân sơ tán mà không bị Nazarick đuổi theo.
+- Hắc điển vỡ đội hình — điểm nhìn chỉ huy Hắc điển, hành lang hầm. Chỉ huy Hắc điển bỏ đội hình để giấu món đồ.
+- Mare khóa đường tiếp tế — điểm nhìn Mare Bello Fiore, đường núi. Mare Bello Fiore khóa đường tiếp tế.
+- Demiurge nhìn thấy điểm gãy — điểm nhìn Demiurge, bàn bản đồ. Demiurge kết luận chính quyền trung ương đã mất thống nhất.
 
-## Chiến dịch có giới hạn
+### Thánh điện không còn là một nước (chapter)
 
-### Chương 4 — Mặt tiền của cuộc chiến
+Chính quyền Slane sụp. Món đồ nguy hiểm bị thu hoặc bị chôn cùng với người giữ nó. Đây là hồi kết của chiến dịch, không phải lời hứa cho tập sau.
 
-Nazarick mở một chiến dịch thăm dò nhằm tìm Bảo vật thế giới và Hắc điển, thay vì san phẳng Thần quyền quốc trong một đêm.
+- Cửa thánh điện — điểm nhìn Ainz Ooal Gown, sân thánh điện. Ainz vào thánh điện trung ương để kết thúc chính quyền, không để mở một tập sau.
+- Hội đồng vỡ — điểm nhìn thượng tế, phòng hội đồng. Thượng tế không còn giữ được hội đồng.
+- Món đồ cuối — điểm nhìn Albedo, hầm thánh. Albedo thu Downfall of Castle and Country trước khi nó được kích hoạt.
+- Shalltear đứng ngoài cửa — điểm nhìn Shalltear Bloodfallen, sân thánh điện. Shalltear Bloodfallen chứng kiến chính quyền sụp mà không được giao nhát cuối.
+- Antilene nghe tin nước mình — điểm nhìn Antilene, Ngục Băng. Antilene vẫn ở trong Ngục Băng sau khi Thần quyền quốc Slane sụp.
 
-Nguyên nhân nối tiếp: Chương giữa — Công việc Albedo không ghi vào biên bản
+## Sau khi một cường quốc biến mất
 
-- **Kế hoạch ba bước** — điểm nhìn Demiurge, Đại Lăng Nazarick.
-  - Việc bắt buộc: Hội đồng chọn chiến dịch nhiều giai đoạn thay vì hủy diệt ngay lập tức.
+### Cái giá của một vùng trống (chapter)
 
-### Chương 5 — Máu không phải là bản đồ
+Xóa một chính quyền không tạo ra hòa bình. Nó tạo ra khoảng trống, người chạy nạn và những nước đang tính nước đi kế.
 
-Đòn thăm dò lấy được tin và trả một cái giá. Bảo vật thế giới vẫn chưa nằm trong tay Nazarick.
+- Kinh đô Pháp thuật nghe chuông khác — điểm nhìn Sebas Tian, kinh đô. Sebas Tian nghe tin chính quyền Slane đã sụp.
+- Người chạy về phía rừng — điểm nhìn Aura Bella Fiora, rừng phía đông. Aura Bella Fiora gặp dân chạy nạn chứ không gặp một đội quân.
+- Khoảng trống của tộc elf — điểm nhìn Mare Bello Fiore, bìa rừng elf. Mare Bello Fiore thấy khoảng trống quyền lực tộc elf vẫn còn.
+- Một nước viết công hàm — điểm nhìn Ainz Ooal Gown, phòng khách. Sứ giả công nhận Thần quyền quốc Slane không còn là một nước.
+- Demiurge ghi những việc chưa xong — điểm nhìn Demiurge, phòng kế hoạch. Demiurge ghi vùng trống quyền lực là xung đột mới, không phải chiến dịch còn dang.
 
-Nguyên nhân nối tiếp: Chương 4 — Mặt tiền của cuộc chiến
+### Lời kết — Thế giới đã thấy (epilogue)
 
-- **Bản đồ thiếu một tên** — điểm nhìn Cocytus, Biên giới Thần quyền quốc Slane.
-  - Việc bắt buộc: Lực lượng thăm dò xác nhận Bảo vật thế giới đã được chuyển khỏi vị trí cũ và rút lui.
+Các nước khác nhìn một cường quốc biến mất và hiểu Vương quốc Pháp thuật làm được việc đó.
 
-### Lời kết — Việc để dành cho một tập sau
+- Ainz một mình sau buổi triều — điểm nhìn Ainz Ooal Gown, phòng làm việc. Ainz xác nhận Thần quyền quốc Slane đã bị đánh bại trong tập này.
+- Shalltear không được một câu tha — điểm nhìn Shalltear Bloodfallen, hành lang. Shalltear Bloodfallen không nhận được lời tha thứ.
+- Bức thư từ một triều đình xa — điểm nhìn Albedo, văn phòng. Albedo nhận công hàm của một nước đang tính lại vị trí của mình.
 
-Cuộc chiến đã bắt đầu thật sự và chưa xong. Albedo vẫn giữ bí mật. Các nước láng giềng đã hiểu rằng đây không phải một cuộc cãi vã biên giới.
-
-Nguyên nhân nối tiếp: Chương 5 — Máu không phải là bản đồ
-
-- **Báo cáo không có chiến thắng trọn vẹn** — điểm nhìn Ainz Ooal Gown, Đại Lăng Nazarick.
-  - Việc bắt buộc: Ainz giữ lệnh chiến tranh nhưng chấp nhận rằng Thần quyền quốc Slane chưa bị đánh bại.

@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 
 from app.core.config import Settings
 from app.core.errors import WorkflowError
+from app.core.text import word_count
 from app.core.workflow import (
     GENERATION_READY,
     INTERRUPTED_SCENE_STATES,
@@ -393,7 +394,7 @@ def generate_scene(
             node_id=node.id,
             iteration=iteration,
             prose=draft.prose,
-            spec=spec.model_dump(),
+            spec={**spec.model_dump(), "word_count": word_count(draft.prose)},
             selected=False,
         )
         session.add(row)

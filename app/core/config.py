@@ -40,7 +40,7 @@ class Settings(BaseSettings):
     seed: int = 17
     planner_mode: str = "deterministic"
     scene_target_words: int = 1600
-    volume_target_words: int = 52000
+    volume_target_words: int = 60000
     volume_target_words_min: int = 45000
     volume_target_words_max: int = 65000
     max_json_attempts: int = 3

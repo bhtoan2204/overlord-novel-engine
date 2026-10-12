@@ -10,6 +10,7 @@ class GenerationSettings:
     max_tokens: int
     task: str
     json_schema: dict | None = None
+    json_object: bool = False
 
 
 @dataclass
@@ -18,6 +19,7 @@ class GenerationResult:
     prompt_tokens: int = 0
     completion_tokens: int = 0
     model: str = ""
+    finish_reason: str = "stop"
 
 
 class ChatBackend(Protocol):

@@ -128,12 +128,32 @@ def validate_plot(spec: SceneSpec, prose: str) -> dict:
                 "character": "",
             }
         )
-    if spec.target_word_count and word_count(prose) < int(spec.target_word_count * 0.25):
+    count = word_count(prose)
+    if spec.target_word_count >= 600 and count < int(spec.target_word_count * 0.6):
+        issues.append(
+            {
+                "severity": "high",
+                "message": "Cảnh chưa đủ dài so với kế hoạch và không được xem là đã xong.",
+                "evidence": f"{count}/{spec.target_word_count}",
+                "character": "",
+            }
+        )
+    elif spec.target_word_count and count < int(spec.target_word_count * 0.25):
         issues.append(
             {
                 "severity": "medium",
                 "message": "Cảnh ngắn hơn nhiều so với nhịp đã định.",
-                "evidence": f"{word_count(prose)}/{spec.target_word_count}",
+                "evidence": f"{count}/{spec.target_word_count}",
+                "character": "",
+            }
+        )
+    paragraphs = [" ".join(part.split()) for part in prose.split("\n\n") if len(part.split()) > 20]
+    if len(paragraphs) != len(set(paragraphs)):
+        issues.append(
+            {
+                "severity": "medium",
+                "message": "Có đoạn văn bị lặp nguyên văn.",
+                "evidence": "duplicate paragraph",
                 "character": "",
             }
         )
@@ -179,12 +199,59 @@ def validate_language(spec: SceneSpec, prose: str) -> dict:
     }
 
 
+def validate_strategy(spec: SceneSpec, prose: str) -> dict:
+    issues = []
+    lowered = prose.lower()
+    for phrase in ("thức tỉnh sức mạnh mới", "mạnh gấp mười lần", "phép mới chưa từng có"):
+        if phrase in lowered:
+            issues.append(
+                {
+                    "severity": "high",
+                    "message": "Sức mạnh tăng mà không có cơ chế đã biết.",
+                    "evidence": phrase,
+                    "character": spec.viewpoint_character,
+                }
+            )
+    return {"validator": "strategy", "scores": _score(issues, "causality"), "issues": issues, "recommendations": [i["message"] for i in issues]}
+
+
+def validate_narrative(spec: SceneSpec, prose: str) -> dict:
+    issues = []
+    if spec.desired_outcome and len(spec.desired_outcome) > 20 and spec.desired_outcome.lower() not in prose.lower() and word_count(prose) > 800:
+        issues.append(
+            {
+                "severity": "medium",
+                "message": "Cảnh chưa chạm kết cục đã định.",
+                "evidence": spec.desired_outcome,
+                "character": "",
+            }
+        )
+    return {"validator": "narrative", "scores": {"pacing": 3 if issues else 5}, "issues": issues, "recommendations": [i["message"] for i in issues]}
+
+
+def validate_continuity(spec: SceneSpec, prose: str) -> dict:
+    issues = []
+    if spec.previous_scene_summary and "như chưa có chuyện gì" in prose.lower():
+        issues.append(
+            {
+                "severity": "high",
+                "message": "Cảnh xóa hệ quả của cảnh trước.",
+                "evidence": spec.previous_scene_summary[:180],
+                "character": "",
+            }
+        )
+    return {"validator": "continuity", "scores": _score(issues, "consistency"), "issues": issues, "recommendations": [i["message"] for i in issues]}
+
+
 def run_heuristics(session: Session, spec: SceneSpec, prose: str) -> list[dict]:
     return [
         validate_canon(session, spec, prose),
         validate_character(session, spec, prose),
         validate_plot(spec, prose),
         validate_language(spec, prose),
+        validate_strategy(spec, prose),
+        validate_narrative(spec, prose),
+        validate_continuity(spec, prose),
     ]
 
 

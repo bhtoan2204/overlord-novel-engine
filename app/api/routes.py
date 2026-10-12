@@ -28,6 +28,7 @@ from app.db.models import (
     WorldRule,
 )
 from app.inference.resources import cpu_snapshot, probe_gpu
+from app.knowledge.coverage import coverage_report
 from app.narrative.export import render_markdown, write_epub, write_markdown, write_pdf
 from app.narrative.pipeline import (
     approve_outline,
@@ -261,11 +262,19 @@ def generate_page(request: Request):
     with db(request) as session:
         project = current_project(session)
         jobs = session.query(Job).filter(Job.project_id == project.id).order_by(Job.updated_at.desc()).limit(10).all()
+        drafts = session.query(SceneDraft).filter(SceneDraft.project_id == project.id).all()
+        words = sum(int((draft.spec or {}).get("word_count") or 0) for draft in drafts)
+        scenes_done = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "scene", OutlineNode.status == "approved").count()
+        scenes_total = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "scene").count()
         return render(
             request,
             "generate.html",
             project=project,
             jobs=jobs,
+            words=words,
+            scenes_done=scenes_done,
+            scenes_total=scenes_total,
+            gpu=probe_gpu(),
             running=request.app.state.runner.running(),
             message=request.query_params.get("message", ""),
             error=request.query_params.get("error", ""),
@@ -414,6 +423,13 @@ def export_book(request: Request, fmt: str):
         return FileResponse(target, filename=filename)
     except EngineError as exc:
         return _redirect("/export", error=str(exc))
+
+
+@router.get("/coverage")
+def coverage_page(request: Request):
+    with db(request) as session:
+        report = coverage_report(session)
+        return render(request, "coverage.html", report=report, message=request.query_params.get("message", ""), error=request.query_params.get("error", ""))
 
 
 @router.get("/discover")

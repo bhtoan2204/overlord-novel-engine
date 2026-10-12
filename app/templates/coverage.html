@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Coverage{% endblock %}
+{% block body %}
+<h1>Dataset coverage</h1>
+<p>{{ report.note }}</p>
+<p>Full-text volumes: {{ report.full_text_volumes }}/16. Study notes: {{ report.summary_notes }}. Discovered links: {{ report.discovered_links }}.</p>
+<table>
+  <tr><th>Volume</th><th>Title</th><th>Status</th><th>Sources</th><th>Words</th></tr>
+  {% for item in report.volumes %}
+  <tr>
+    <td>{{ item.volume }}</td>
+    <td>{{ item.title }}</td>
+    <td>{{ item.status }}</td>
+    <td>{{ item.sources }}</td>
+    <td>{{ item.words }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
