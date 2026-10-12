@@ -75,7 +75,27 @@ def render_markdown(session: Session, project: Project) -> str:
             lines.extend([f"## {chapter.title}", "", chapter.summary, ""])
             current = chapter.id
         lines.extend([f"### {scene.title}", "", draft.prose.strip(), ""])
-    if current is None:
+    parts = [row for row in session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "part").all()]
+    chapters = {row.id: row for row in session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "chapter").all()}
+    parts.sort(key=lambda row: ((chapters[row.parent_id].ordinal if row.parent_id in chapters else 0), row.ordinal))
+    wrote_part = False
+    for part in parts:
+        body = part_text(session, part.id).strip()
+        if not body:
+            continue
+        wrote_part = True
+        chapter = chapters.get(part.parent_id)
+        lines.extend(
+            [
+                f"## {(chapter.title + ' — ') if chapter else ''}{part.title}",
+                "",
+                f"_{part.actual_words}/{part.target_words} từ. Trạng thái: {part.completion_status}._",
+                "",
+                body,
+                "",
+            ]
+        )
+    if current is None and not wrote_part:
         lines.append("_Chưa có cảnh nào được duyệt._")
     return "\n".join(lines)
 

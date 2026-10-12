@@ -29,7 +29,7 @@
   <p>{{ node.target_words }} từ mục tiêu, {{ node.actual_words }} từ đã có. Trạng thái: {{ node.completion_status }}.</p>
   {% for part in nodes if part.parent_id == node.id and part.level == "part" %}
   <details>
-    <summary>{{ part.title }} — {{ part.actual_words }}/{{ part.target_words }} từ — {{ part.completion_status }}</summary>
+    <summary><a href="/reader/part/{{ part.id }}">{{ part.title }}</a> — {{ part.actual_words }}/{{ part.target_words }} từ — {{ part.completion_status }}</summary>
     <ol>
       {% for scene in nodes if scene.parent_id == part.id and scene.level == "scene" %}
       <li>{{ scene.title }} — {{ scene.actual_words }}/{{ scene.target_words }}</li>

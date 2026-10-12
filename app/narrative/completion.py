@@ -23,14 +23,20 @@ def part_is_complete(part: OutlineNode, scenes: list[OutlineNode], beats: list[O
         return False
     if any(beat.completion_status not in TERMINAL_OK for beat in beats):
         return False
-    if part.completion_status == "NEEDS_REVIEW":
+    if part.completion_status in {"NEEDS_REVIEW", "NEEDS_EXPANSION", "FAILED"}:
+        return False
+    if (part.continuity or {}).get("blocking"):
         return False
     target = part.target_words or 0
+    if part.payload.get("editorial_override"):
+        return True
     if part.payload.get("short_transition"):
         return part.actual_words >= int(part.payload.get("minimum_words") or 1)
     if target <= 0:
         return False
-    return part.actual_words >= int(target * ratio)
+    lower = int(target * ratio)
+    upper = int(target * 1.2)
+    return lower <= part.actual_words <= upper
 
 
 def refresh_rollup(session: Session, project: Project, *, ratio: float = 0.90) -> str:
@@ -55,9 +61,13 @@ def refresh_rollup(session: Session, project: Project, *, ratio: float = 0.90) -
             beats = []
             for scene in scenes:
                 beats.extend(_children(session, scene.id, "beat"))
+            beats_done = bool(beats) and all(beat.completion_status in TERMINAL_OK for beat in beats)
+            scenes_done = bool(scenes) and all(scene.completion_status in TERMINAL_OK for scene in scenes)
             if part_is_complete(part, scenes, beats, ratio=ratio):
                 part.completion_status = "COMPLETED"
                 part.status = "approved"
+            elif scenes_done and beats_done and part.completion_status != "NEEDS_REVIEW":
+                part.completion_status = "NEEDS_REVIEW"
             elif part.completion_status == "COMPLETED":
                 part.completion_status = "GENERATING"
         chapter.actual_words = sum(part.actual_words or 0 for part in parts)
@@ -73,7 +83,13 @@ def refresh_rollup(session: Session, project: Project, *, ratio: float = 0.90) -
     required = {"prologue", "chapter", "epilogue"}
     if volume:
         volume.actual_words = sum(chapter.actual_words or 0 for chapter in chapters)
-        if done and required <= kinds:
+        from app.knowledge.coverage import coverage_report
+
+        dataset_ready = coverage_report(session)["full_text_volumes"] >= 16 or bool((project.config or {}).get("dataset_override"))
+        if done and required <= kinds and not dataset_ready:
+            volume.completion_status = "NEEDS_EXPANSION"
+            volume.continuity = {**(volume.continuity or {}), "dataset": "Volumes 1–16 are not ingested as full text."}
+        elif done and required <= kinds and dataset_ready:
             volume.completion_status = "COMPLETED"
             project.workflow_state = "VOLUME_COMPLETED"
         else:

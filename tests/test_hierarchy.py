@@ -241,6 +241,46 @@ def test_outline_replacement_archives_selected_prose(app, session):
     assert session.query(OutlineNode).filter(OutlineNode.level == "part").count() > 0
 
 
+def test_part_above_the_range_is_not_complete(app, session):
+    project = Project(id=str(uuid.uuid4()), title="thử", disclaimer="fanfiction", workflow_state="OUTLINE_APPROVED", config={})
+    session.add(project)
+    session.flush()
+    volume = _node(session, project, None, "volume", 17, "Tập", 400)
+    arc = _node(session, project, volume.id, "arc", 1, "Arc")
+    chapter = _node(session, project, arc.id, "chapter", 1, "Chương", 400, kind="chapter")
+    part = _node(session, project, chapter.id, "part", 1, "Phần", 200)
+    scene = _node(session, project, part.id, "scene", 1, "Cảnh", 200)
+    beat = _node(session, project, scene.id, "beat", 1, "Nhịp", 200)
+    for row in (scene, beat):
+        row.completion_status = "COMPLETED"
+    part.actual_words = 300
+    scene.actual_words = 300
+    session.commit()
+    refresh_rollup(session, project)
+    assert session.get(OutlineNode, part.id).completion_status == "NEEDS_REVIEW"
+    assert session.get(OutlineNode, volume.id).completion_status != "COMPLETED"
+
+
+def test_missing_source_text_blocks_volume_completion(app, session):
+    project = Project(id=str(uuid.uuid4()), title="thử", disclaimer="fanfiction", workflow_state="OUTLINE_APPROVED", config={})
+    session.add(project)
+    session.flush()
+    volume = _node(session, project, None, "volume", 17, "Tập", 600)
+    arc = _node(session, project, volume.id, "arc", 1, "Arc")
+    for ordinal, kind, title in ((1, "prologue", "Mở"), (2, "chapter", "Giữa"), (3, "epilogue", "Kết")):
+        chapter = _node(session, project, arc.id, "chapter", ordinal, title, 200, kind=kind)
+        part = _node(session, project, chapter.id, "part", 1, title + " phần", 200)
+        scene = _node(session, project, part.id, "scene", 1, title + " cảnh", 200)
+        beat = _node(session, project, scene.id, "beat", 1, title + " nhịp", 200)
+        for row in (chapter, part, scene, beat):
+            row.completion_status = "COMPLETED"
+            row.actual_words = 200
+    session.commit()
+    refresh_rollup(session, project)
+    assert session.get(OutlineNode, volume.id).completion_status == "NEEDS_EXPANSION"
+    assert project.workflow_state != "VOLUME_COMPLETED"
+
+
 def test_missing_next_scene_does_not_finish_the_volume(app, session, settings):
     from app.narrative.pipeline import generate_scene
 

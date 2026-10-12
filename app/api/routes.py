@@ -246,6 +246,16 @@ def reader(request: Request):
         return render(request, "reader.html", project=project, drafts=drafts, query=query)
 
 
+@router.get("/reader/part/{part_id}")
+def reader_part(request: Request, part_id: str):
+    from app.narrative.export import part_text
+
+    with db(request) as session:
+        part = session.get(OutlineNode, part_id)
+        prose = part_text(session, part_id) if part else ""
+        return render(request, "part.html", part=part, prose=prose, finished=bool(part and part.completion_status == "COMPLETED"))
+
+
 @router.get("/reader/{scene_id}")
 def reader_scene(request: Request, scene_id: str):
     with db(request) as session:
@@ -263,8 +273,18 @@ def generate_page(request: Request):
         project = current_project(session)
         jobs = session.query(Job).filter(Job.project_id == project.id).order_by(Job.updated_at.desc()).limit(10).all()
         drafts = session.query(SceneDraft).filter(SceneDraft.project_id == project.id).all()
-        words = sum(int((draft.spec or {}).get("word_count") or 0) for draft in drafts)
-        scenes_done = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "scene", OutlineNode.status == "approved").count()
+        from app.db.models import ProseChunk
+
+        chunk_words = sum(row.word_count for row in session.query(ProseChunk).filter(ProseChunk.project_id == project.id, ProseChunk.status == "ACCEPTED").all())
+        words = chunk_words + sum(int((draft.spec or {}).get("word_count") or 0) for draft in drafts)
+        prompt_tokens = sum(row.prompt_tokens for row in session.query(ProseChunk).filter(ProseChunk.project_id == project.id).all())
+        completion_tokens = sum(row.completion_tokens for row in session.query(ProseChunk).filter(ProseChunk.project_id == project.id).all())
+        parts_done = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "part", OutlineNode.completion_status == "COMPLETED").count()
+        parts_total = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "part").count()
+        chapters_done = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "chapter", OutlineNode.completion_status == "COMPLETED").count()
+        chapters_total = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "chapter").count()
+        current = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "beat", OutlineNode.completion_status == "GENERATING").first()
+        scenes_done = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "scene", OutlineNode.completion_status == "COMPLETED").count()
         scenes_total = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "scene").count()
         return render(
             request,
@@ -274,6 +294,13 @@ def generate_page(request: Request):
             words=words,
             scenes_done=scenes_done,
             scenes_total=scenes_total,
+            parts_done=parts_done,
+            parts_total=parts_total,
+            chapters_done=chapters_done,
+            chapters_total=chapters_total,
+            current_beat=current.title if current else "",
+            prompt_tokens=prompt_tokens,
+            completion_tokens=completion_tokens,
             gpu=probe_gpu(),
             running=request.app.state.runner.running(),
             message=request.query_params.get("message", ""),

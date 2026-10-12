@@ -62,12 +62,19 @@ def _memory(session: Session, beat: OutlineNode) -> str:
     part = nodes.get(scene.parent_id) if scene else None
     chapter = nodes.get(part.parent_id) if part else None
     lines = []
+    def _line(facts: list, label: str) -> None:
+        shown = []
+        for fact in facts[-6:]:
+            shown.append(fact["text"] if isinstance(fact, dict) else str(fact))
+        if shown:
+            lines.append(label + ": " + " | ".join(shown))
+
     if chapter and chapter.continuity.get("facts"):
-        lines.append("Sự kiện chương: " + " | ".join(chapter.continuity["facts"][-6:]))
+        _line(chapter.continuity["facts"], "Sự kiện chương")
     if part and part.continuity.get("facts"):
-        lines.append("Sự kiện phần: " + " | ".join(part.continuity["facts"][-6:]))
+        _line(part.continuity["facts"], "Sự kiện phần")
     if scene and scene.continuity.get("facts"):
-        lines.append("Sự kiện cảnh: " + " | ".join(scene.continuity["facts"][-4:]))
+        _line(scene.continuity["facts"], "Sự kiện cảnh")
     previous = _accepted_text(session, beat.id)
     if previous:
         words = previous.split()
@@ -75,11 +82,56 @@ def _memory(session: Session, beat: OutlineNode) -> str:
     return "\n".join(lines)
 
 
-def _remember(node: OutlineNode, fact: str) -> None:
+def _remember(node: OutlineNode, fact: dict) -> None:
     facts = list((node.continuity or {}).get("facts") or [])
     if fact and fact not in facts:
         facts.append(fact)
     node.continuity = {**(node.continuity or {}), "facts": facts}
+
+
+def _finish_scene(session: Session, scene, part, chapter, beat, fact: dict | None = None) -> None:
+    if fact is None:
+        fact = {"beat_id": beat.id, "text": beat.summary, "purpose": "", "who": ""}
+    _remember(beat, fact)
+    if scene:
+        _remember(scene, fact)
+        _recount(session, scene)
+        scene_beats = session.query(OutlineNode).filter(OutlineNode.parent_id == scene.id, OutlineNode.level == "beat").all()
+        if scene_beats and all(item.completion_status in FINISHED for item in scene_beats):
+            scene.completion_status = "COMPLETED"
+            scene.status = "approved"
+            if part:
+                _remember(part, fact)
+        _recount(session, scene)
+    if part:
+        _recount(session, part)
+    if chapter:
+        _remember(chapter, fact)
+        _recount(session, chapter)
+
+
+def _maybe_gate_part(session: Session, part: OutlineNode | None) -> None:
+    if part is None:
+        return
+    scenes = session.query(OutlineNode).filter(OutlineNode.parent_id == part.id, OutlineNode.level == "scene").all()
+    beats = []
+    for scene in scenes:
+        beats.extend(session.query(OutlineNode).filter(OutlineNode.parent_id == scene.id, OutlineNode.level == "beat").all())
+    if not beats or any(item.completion_status not in FINISHED for item in beats):
+        return
+    from app.narrative.export import part_text
+
+    text = part_text(session, part.id).lower()
+    issues = []
+    conflict = (part.summary or "").strip()
+    if conflict and conflict.lower() not in text:
+        issues.append("Thiếu sự kiện của phần.")
+    for phrase in ("chuôi kiếm", "dark lord", "nông dân loài người"):
+        if phrase in text:
+            issues.append("Lệch chính sử: " + phrase)
+    if issues:
+        part.continuity = {**(part.continuity or {}), "blocking": issues}
+        part.completion_status = "NEEDS_REVIEW"
 
 
 def _recount(session: Session, node: OutlineNode) -> None:
@@ -113,10 +165,23 @@ def generate_next_chunk(session: Session, project: Project, settings: Settings, 
     )
     ordinal = (existing.ordinal + 1) if existing else 1
     action = beat.payload.get("action") or beat.summary
+    accepted_words = word_count(_accepted_text(session, beat.id))
+    remaining = max(40, (beat.target_words or settings.chunk_target_words) - accepted_words)
+    if accepted_words >= int((beat.target_words or 1) * 0.9) and remaining < 80:
+        beat.actual_words = accepted_words
+        beat.completion_status = "COMPLETED"
+        beat.status = "approved"
+        _finish_scene(session, scene, part, chapter, beat)
+        _maybe_gate_part(session, part)
+        refresh_rollup(session, project, ratio=settings.part_completion_ratio)
+        return {"status": "accepted", "beat_id": beat.id, "ordinal": ordinal - 1, "words": 0, "closed": True}
+    ask = min(settings.chunk_target_words, remaining)
+    ban = beat.payload.get("avoid") or ""
     system = (
         f"Bạn viết fanfiction dark fantasy bằng tiếng Việt. {DISCLAIMER} "
         "Chỉ viết tiếp một đoạn. Không JSON. Không tiêu đề. Không chữ Hán. "
-        "Đoạn này phải có hành động hoặc thông tin mới. Cấm lặp câu đã có."
+        "Chỉ viết đúng hành động được giao. Không thêm phe mới, đội quân mới, vũ khí mới, hay món đồ không có trong nhịp. "
+        "Ainz là xác sống, không dùng kiếm. Cấm lặp câu đã có."
     )
     user = (
         f"Nhịp: {beat.title}\n"
@@ -124,14 +189,17 @@ def generate_next_chunk(session: Session, project: Project, settings: Settings, 
         f"Mục đích: {beat.payload.get('purpose', '')}\n"
         f"Thông tin mới: {beat.payload.get('new_information', '')}\n"
         f"Mục tiêu nhân vật: {beat.payload.get('objective', '')}\n"
+        f"Xung đột: {part.summary if part else ''}\n"
+        f"Chuyển tiếp dự kiến: sang nhịp kế của cùng phần, không mở một tuyến mới.\n"
+        f"Cấm viết lại: {ban}\n"
         f"{_memory(session, beat)}\n"
-        f"Viết khoảng {min(settings.chunk_target_words, beat.target_words or settings.chunk_target_words)} từ rồi dừng."
+        f"Viết khoảng {ask} từ rồi dừng."
     )
     messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
     limit = context_tokens or settings.context_tokens
     prompt_tokens = max(1, word_count(system + user))
     try:
-        room = completion_budget(limit, prompt_tokens, min(700, max(200, settings.chunk_target_words * 2)))
+        room = completion_budget(limit, prompt_tokens, min(700, max(80, ask * 2)))
     except InferenceError as exc:
         beat.completion_status = "PAUSED"
         return {"status": "paused", "reason": str(exc), "beat_id": beat.id}
@@ -163,6 +231,7 @@ def generate_next_chunk(session: Session, project: Project, settings: Settings, 
         history.append({"ordinal": ordinal, "reason": rejected})
         beat.revision_history = history
         beat.checkpoint = {**(beat.checkpoint or {}), "retries": retries, "last_reject": rejected}
+        beat.payload = {**(beat.payload or {}), "avoid": (piece or rejected)[:240]}
         session.add(
             ProseChunk(
                 id=str(uuid.uuid4()),
@@ -203,26 +272,18 @@ def generate_next_chunk(session: Session, project: Project, settings: Settings, 
     )
     session.flush()
     _recount(session, beat)
-    fact = beat.payload.get("new_information") or action
+    fact = {
+        "beat_id": beat.id,
+        "text": beat.payload.get("new_information") or action,
+        "purpose": beat.payload.get("purpose") or "",
+        "who": (scene.payload or {}).get("viewpoint_character") if scene else "",
+    }
     if beat.actual_words >= (beat.target_words or 1):
         beat.completion_status = "COMPLETED"
         beat.status = "approved"
         _remember(beat, fact)
-        if scene:
-            _remember(scene, fact)
-            _recount(session, scene)
-            scene_beats = session.query(OutlineNode).filter(OutlineNode.parent_id == scene.id, OutlineNode.level == "beat").all()
-            if scene_beats and all(item.completion_status in FINISHED for item in scene_beats):
-                scene.completion_status = "COMPLETED"
-                scene.status = "approved"
-                if part:
-                    _remember(part, fact)
-            _recount(session, scene)
-        if part:
-            _recount(session, part)
-        if chapter:
-            _remember(chapter, fact)
-            _recount(session, chapter)
+        _finish_scene(session, scene, part, chapter, beat, fact)
+        _maybe_gate_part(session, part)
     else:
         beat.checkpoint = {**(beat.checkpoint or {}), "ordinal": ordinal}
     volume_status = refresh_rollup(session, project, ratio=settings.part_completion_ratio)

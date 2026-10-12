@@ -12,11 +12,11 @@ Fanfiction. Not canon. Measured 2026-10-13.
 | Target | 4,000 Vietnamese words |
 | Accepted words | 5,845 |
 | Exported words | 5,845 |
-| Status | COMPLETED |
+| Status after the range gate | NEEDS_REVIEW |
 | Requests | 34 (32 accepted, 2 rejected as repetition) |
 | Wall time | 1,428 seconds |
 
-The part is complete because every beat under it completed and the word count is above 90 percent of 4,000. It ran past 4,000 because a beat stays open until its own target is met, and the second chunk of a beat is often about 170–200 words. The volume is not complete. The workflow status on the last accepted chunk was still PLANNED.
+The beats were all written, and the count is above 90 percent of 4,000. It is not an accepted part. 5,845 is above the 120 percent ceiling (4,800), and the prose adds a northern army, a golden hairpin, a vanished squad, and a sword. The gate now records that as NEEDS_REVIEW. A later chunk for a beat asks only for the words still missing, instead of another full chunk. The volume stays incomplete, and it cannot be marked complete while Volumes 1–16 have no ingested full text.
 
 One repetition was rejected and the beat continued. The rejected text is stored and is not in the export.
 

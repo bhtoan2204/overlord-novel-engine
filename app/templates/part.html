@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ part.title if part else "Part" }}{% endblock %}
+{% block body %}
+{% if part %}
+<h1>{{ part.title }}</h1>
+<p>{{ part.actual_words }}/{{ part.target_words }} từ. Trạng thái: {{ part.completion_status }}.</p>
+{% if not finished %}<p class="alert">Phần này chưa hoàn thành và không phải toàn bộ tập.</p>{% endif %}
+{% for paragraph in prose.split("\n\n") if paragraph.strip() %}
+<p>{{ paragraph }}</p>
+{% endfor %}
+{% else %}
+<p>Không thấy phần này.</p>
+{% endif %}
+{% endblock %}
