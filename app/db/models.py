@@ -193,6 +193,47 @@ class OutlineNode(Base):
     status: Mapped[str] = mapped_column(String(40), default="draft")
     approved: Mapped[bool] = mapped_column(Boolean, default=False)
     payload: Mapped[dict] = mapped_column(JSON, default=dict)
+    target_words: Mapped[int] = mapped_column(Integer, default=0)
+    actual_words: Mapped[int] = mapped_column(Integer, default=0)
+    completion_status: Mapped[str] = mapped_column(String(40), default="PLANNED")
+    checkpoint: Mapped[dict] = mapped_column(JSON, default=dict)
+    revision_history: Mapped[list] = mapped_column(JSON, default=list)
+    continuity: Mapped[dict] = mapped_column(JSON, default=dict)
+
+
+class ProseChunk(Base):
+    """One committed piece of generated prose. Generated fiction, not a canon source."""
+
+    __tablename__ = "prose_chunks"
+    __table_args__ = (UniqueConstraint("beat_id", "ordinal", name="uq_chunk_beat_ordinal"),)
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    project_id: Mapped[str] = mapped_column(ForeignKey("projects.id", ondelete="CASCADE"))
+    beat_id: Mapped[str] = mapped_column(String(36))
+    scene_id: Mapped[str] = mapped_column(String(36))
+    part_id: Mapped[str] = mapped_column(String(36))
+    ordinal: Mapped[int] = mapped_column(Integer)
+    prose: Mapped[str] = mapped_column(Text)
+    word_count: Mapped[int] = mapped_column(Integer, default=0)
+    prompt_tokens: Mapped[int] = mapped_column(Integer, default=0)
+    completion_tokens: Mapped[int] = mapped_column(Integer, default=0)
+    finish_reason: Mapped[str] = mapped_column(String(40), default="stop")
+    status: Mapped[str] = mapped_column(String(40), default="ACCEPTED")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class PreservedDraft(Base):
+    """Copy of an older approved draft kept when an outline is replaced."""
+
+    __tablename__ = "preserved_drafts"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    project_id: Mapped[str] = mapped_column(ForeignKey("projects.id", ondelete="CASCADE"))
+    original_node_id: Mapped[str] = mapped_column(String(36))
+    title: Mapped[str] = mapped_column(String(300), default="")
+    prose: Mapped[str] = mapped_column(Text)
+    word_count: Mapped[int] = mapped_column(Integer, default=0)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 
 class SceneDraft(Base):

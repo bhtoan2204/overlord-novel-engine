@@ -13,17 +13,21 @@ from app.db.models import OutlineNode, Project, SceneDraft
 
 
 def _ordered_scenes(session: Session, project_id: str) -> list[tuple[OutlineNode, OutlineNode, SceneDraft]]:
-    chapters = session.query(OutlineNode).filter(OutlineNode.project_id == project_id, OutlineNode.level == "chapter").all()
-    arcs = {row.id: row for row in session.query(OutlineNode).filter(OutlineNode.project_id == project_id, OutlineNode.level == "arc")}
-    chapters.sort(key=lambda row: (arcs[row.parent_id].ordinal if row.parent_id in arcs else 0, row.ordinal))
+    nodes = {row.id: row for row in session.query(OutlineNode).filter(OutlineNode.project_id == project_id).all()}
+    chapters = [row for row in nodes.values() if row.level == "chapter"]
+    chapters.sort(key=lambda row: ((nodes[row.parent_id].ordinal if row.parent_id in nodes else 0), row.ordinal))
     collected = []
     for chapter in chapters:
-        scenes = (
-            session.query(OutlineNode)
-            .filter(OutlineNode.parent_id == chapter.id, OutlineNode.level == "scene", OutlineNode.status == "approved")
-            .order_by(OutlineNode.ordinal)
-            .all()
-        )
+        parts = [row for row in nodes.values() if row.parent_id == chapter.id and row.level == "part"]
+        parts.sort(key=lambda row: row.ordinal)
+        scenes = []
+        if parts:
+            for part in parts:
+                scenes.extend(row for row in nodes.values() if row.parent_id == part.id and row.level == "scene" and row.status == "approved")
+            scenes.sort(key=lambda row: ((nodes[row.parent_id].ordinal if row.parent_id in nodes else 0), row.ordinal))
+        else:
+            scenes = [row for row in nodes.values() if row.parent_id == chapter.id and row.level == "scene" and row.status == "approved"]
+            scenes.sort(key=lambda row: row.ordinal)
         for scene in scenes:
             draft = (
                 session.query(SceneDraft)
@@ -36,13 +40,35 @@ def _ordered_scenes(session: Session, project_id: str) -> list[tuple[OutlineNode
     return collected
 
 
+def part_text(session: Session, part_id: str) -> str:
+    nodes = {row.id: row for row in session.query(OutlineNode).filter(OutlineNode.project_id == session.get(OutlineNode, part_id).project_id).all()}
+    from app.db.models import ProseChunk
+
+    chunks = (
+        session.query(ProseChunk)
+        .filter(ProseChunk.part_id == part_id, ProseChunk.status == "ACCEPTED")
+        .all()
+    )
+
+    def order(chunk):
+        beat = nodes.get(chunk.beat_id)
+        scene = nodes.get(chunk.scene_id)
+        return (scene.ordinal if scene else 0, beat.ordinal if beat else 0, chunk.ordinal)
+
+    return "\n\n".join(chunk.prose.strip() for chunk in sorted(chunks, key=order) if chunk.prose.strip())
+
+
 def render_markdown(session: Session, project: Project) -> str:
+    volume = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "volume").one_or_none()
+    finished = bool(volume and volume.completion_status == "COMPLETED")
     lines = [
         f"# {project.title}",
         "",
         f"> {DISCLAIMER}",
         "",
     ]
+    if not finished:
+        lines.extend(["**Chưa hoàn thành. Đây không phải toàn bộ tập.**", ""])
     current = None
     for chapter, scene, draft in _ordered_scenes(session, project.id):
         if chapter.id != current:

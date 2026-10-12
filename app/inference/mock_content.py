@@ -119,7 +119,7 @@ def _write(payload: dict, revise: bool) -> dict:
     prose = "\n\n".join(paragraphs)
     target = int(spec.get("target_word_count") or 0)
     step = 0
-    while target >= 600 and word_count(prose) < int(target * 0.75):
+    while target >= 600 and word_count(prose) < int(target * 0.95):
         step += 1
         paragraphs.append(
             f"Nhịp {step}. {viewpoint} ở {location} không thêm phép mới. "

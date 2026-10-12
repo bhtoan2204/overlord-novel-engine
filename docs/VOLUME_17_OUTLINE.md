@@ -1,122 +1,105 @@
 # Tập 17 không chính thức — Thần quyền quốc Slane sụp đổ
 
-Đây là fanfiction, không phải chính sử của Kugane Maruyama. Văn xuôi đầy đủ chưa được sinh. Tài liệu này là dàn ý.
+Fanfiction, không phải chính sử của Kugane Maruyama. Dàn ý này thay bản 52 cảnh ngắn. Chính quyền trung ương sụp trong tập này.
 
-Nhánh được chọn: theocracy-collapse. Chính quyền trung ương của Thần quyền quốc Slane sụp trong tập này.
+Mục tiêu tập: 200000 từ tiếng Việt. Kiểm tra cộng dồn: khớp.
 
-Mục tiêu: khoảng 60.000 từ tiếng Việt, 52 cảnh, khoảng 1.150 từ mỗi cảnh khi mục tiêu tập là 60.000. Đó là mục tiêu kế hoạch.
+Cấu trúc: Tập → Arc → Chương → Phần → Cảnh → Nhịp. Mỗi nhịp khoảng 150–350 từ. Phần không phải là cảnh.
 
-Bản dàn ý cũ, dừng trước khi Thần quyền quốc bị đánh bại, vẫn nằm trong cơ sở dữ liệu của dự án đã duyệt cảnh mock. Bản này không ghi đè cảnh đã duyệt.
+Tư liệu cục bộ vẫn chỉ là ghi chú sau Tập 16. Tập 1–16 chưa có toàn văn được phép dùng.
 
-## Quyết định chiến tranh
+## Quyết định
 
-### Lời mở — Lệnh đã ban (prologue)
+### Lời mở — Lệnh đã ban (prologue, 8000 từ)
 
-Ainz giữ lệnh chuẩn bị tiêu diệt Thần quyền quốc Slane, và Nazarick phải biến lệnh đó thành một chiến dịch có thể chịu được Bảo vật thế giới.
+- Phòng làm việc sau cơn giận — 4000 từ, điểm nhìn Ainz Ooal Gown. Ainz giữ nguyên lệnh chuẩn bị tiêu diệt Thần quyền quốc Slane.
+- Shalltear nghe nguyên cớ — 4000 từ, điểm nhìn Shalltear Bloodfallen. Shalltear biết chiến dịch bắt đầu vì cô từng bị điều khiển.
 
-- Phòng làm việc sau cơn giận — điểm nhìn Ainz Ooal Gown, phòng làm việc của Ainz. Ainz giữ nguyên lệnh chuẩn bị tiêu diệt Thần quyền quốc Slane.
-- Câu hỏi Shalltear không dám hỏi — điểm nhìn Shalltear Bloodfallen, hành lang tầng chín. Shalltear biết chiến dịch bắt đầu vì cô từng bị điều khiển.
-- Demiurge vẽ chiến dịch — điểm nhìn Demiurge, phòng kế hoạch. Demiurge nói rõ Nazarick chưa biết hết Bảo vật thế giới còn lại của Thần quyền quốc Slane.
-- Albedo nhận việc tình báo — điểm nhìn Albedo, văn phòng thủ hộ. Albedo nhận nhiệm vụ tìm Downfall of Castle and Country và các Bảo vật thế giới khác.
+## Chuẩn bị
 
-## Chuẩn bị và phòng thủ
+### Chương 1 — Nazarick xuất quân (chapter, 22000 từ)
 
-### Nazarick xuất quân (chapter)
+- Demiurge vẽ chiến dịch nhiều bước — 3200 từ, điểm nhìn Demiurge. Demiurge nói rõ Nazarick chưa biết hết Bảo vật thế giới của Thần quyền quốc Slane.
+- Albedo nhận việc tình báo — 3200 từ, điểm nhìn Albedo. Albedo nhận nhiệm vụ tìm Downfall of Castle and Country.
+- Cocytus nhận luật rút lui — 3200 từ, điểm nhìn Cocytus. Cocytus nhận lệnh rút khi thấy dấu hiệu Bảo vật thế giới.
+- Aura và Mare mở đường — 3200 từ, điểm nhìn Aura Bella Fiora. Aura Bella Fiora đánh dấu đường tiếp tế chứ không mở cuộc tàn sát.
+- Shalltear không được dẫn mũi — 3200 từ, điểm nhìn Shalltear Bloodfallen. Ainz không cho Shalltear Bloodfallen dẫn mũi nhọn.
+- Pandora's Actor giữ kinh đô — 6000 từ, điểm nhìn Pandora's Actor. Pandora's Actor nhận vai giữ lễ ở kinh đô trong lúc Ainz chỉ huy.
 
-Các Thủ hộ tầng nhận nhiệm vụ có giới hạn. Sức mạnh không phải vấn đề. Vấn đề là món đồ có thể cướp quyền điều khiển.
+### Chương 2 — Thần quyền quốc nghe tiếng bước (chapter, 22000 từ)
 
-- Cocytus nhận mặt trận — điểm nhìn Cocytus, sân luyện tầng năm. Cocytus nhận lệnh rút khi thấy dấu hiệu Bảo vật thế giới.
-- Aura và Mare mở đường — điểm nhìn Aura Bella Fiora, rừng rìa lãnh thổ. Aura Bella Fiora đánh dấu đường tiếp tế chứ không mở cuộc tàn sát.
-- Sebas ở kinh đô — điểm nhìn Sebas Tian, kinh đô Vương quốc Pháp thuật. Sebas Tian được lệnh giữ sự ổn định ở kinh đô.
-- Shalltear xin một nhiệm vụ có giới hạn — điểm nhìn Shalltear Bloodfallen, phòng ngai. Ainz không cho Shalltear Bloodfallen dẫn mũi nhọn.
-- Pandora's Actor đóng vai Pháp vương — điểm nhìn Pandora's Actor, phòng gương. Pandora's Actor nhận vai giữ lễ ở kinh đô.
-- Kho chưa kiểm được — điểm nhìn Demiurge, kho hồ sơ. Demiurge ghi các lỗ hổng tình báo vào kế hoạch, không giả vờ đã biết hết.
+- Đền không ngủ — 3200 từ, điểm nhìn giáo sĩ trực. Giáo sĩ trực kết luận không thể thắng Nazarick bằng một trận tay đôi.
+- Hắc điển giữ món đồ ở hậu phương — 3200 từ, điểm nhìn chỉ huy Hắc điển. Chỉ huy Hắc điển giữ món đồ điều khiển ở hậu phương.
+- Chuông chiến tranh trước đường sơ tán — 3200 từ, điểm nhìn thị dân. Thị dân nghe chuông chiến tranh mà chưa có đường sơ tán.
+- Hội đồng hoãn Bảo vật thế giới — 3200 từ, điểm nhìn thượng tế. Thượng tế hoãn việc dùng lại Bảo vật thế giới vì sợ phản tác dụng.
+- Cửa khẩu phía nam đóng — 3200 từ, điểm nhìn chỉ huy biên phòng. Chỉ huy biên phòng đóng cửa khẩu phía nam.
+- Lời thần không còn một miệng — 6000 từ, điểm nhìn thượng tế. Các phe trong giáo hội tranh nhau việc thần có đòi hỏi hủy diệt hay cố thủ.
 
-### Thần quyền quốc nghe tiếng bước (chapter)
+## Tình báo và trận đầu
 
-Slane nhận ra Vương quốc Pháp thuật không còn chờ. Họ chuẩn bị bằng đức tin, quân đội và món đồ họ không dám dùng bừa.
+### Chương 3 — Tìm món đồ, không tìm vinh quang (chapter, 22000 từ)
 
-- Đền không ngủ — điểm nhìn giáo sĩ trực, thánh điện trung ương. Giáo sĩ trực kết luận không thể thắng Nazarick bằng một trận tay đôi.
-- Hắc điển được gọi — điểm nhìn chỉ huy Hắc điển, doanh trại Hắc điển. Chỉ huy Hắc điển giữ món đồ điều khiển ở hậu phương.
-- Dân thành nghe chuông — điểm nhìn thị dân, phố dưới thánh điện. Thị dân nghe chuông chiến tranh mà chưa có đường sơ tán.
-- Giáo hội tranh nhau lời thần — điểm nhìn thượng tế, phòng hội đồng. Thượng tế hoãn việc dùng lại Bảo vật thế giới vì sợ phản tác dụng.
-- Biên giới đóng cửa — điểm nhìn chỉ huy biên phòng, cửa khẩu phía nam. Chỉ huy biên phòng đóng cửa khẩu phía nam.
+- Câu hỏi trong Ngục Băng — 3200 từ, điểm nhìn Albedo. Antilene không khai ra vị trí Downfall of Castle and Country.
+- Việc Albedo không nói — 3200 từ, điểm nhìn Albedo. Albedo không nhắc đơn vị bí mật với Ainz Ooal Gown.
+- Demiurge thiếu một mảnh — 3200 từ, điểm nhìn Demiurge. Demiurge nhận ra mình thiếu dữ liệu mà Albedo chưa đưa.
+- Kho phụ được khoanh — 3200 từ, điểm nhìn Nabe. Nabe khoanh vùng một kho phụ chứ không tìm thấy Downfall of Castle and Country.
+- Câu hỏi của sứ giả — 3200 từ, điểm nhìn Ainz Ooal Gown. Sứ giả hỏi liệu Thần quyền quốc Slane có còn tồn tại sau chiến dịch.
+- Địa điểm trống — 6000 từ, điểm nhìn Demiurge. Demiurge báo địa điểm nghi ngờ không chứa Bảo vật thế giới.
 
-## Tình báo và những trận đầu
+### Chương xen — Hai người không nói hết (interlude, 8000 từ)
 
-### Tìm món đồ, không tìm vinh quang (chapter)
+- Shalltear nhìn bản đồ từ ban công — 4000 từ, điểm nhìn Shalltear Bloodfallen. Shalltear Bloodfallen ở lại Đại Lăng Nazarick trong lúc trận đầu được vẽ.
+- Khoảng Albedo vẫn giữ — 4000 từ, điểm nhìn Albedo. Albedo sắp xếp tình báo mà vẫn giấu việc riêng khỏi cả Demiurge.
 
-Albedo tìm Downfall of Castle and Country. Demiurge không được biết mọi bí mật của cô.
+### Chương 4 — Những trận không phải kết thúc (chapter, 22000 từ)
 
-- Câu hỏi với người trong băng — điểm nhìn Albedo, Ngục Băng. Antilene không khai ra vị trí Downfall of Castle and Country.
-- Mạng lưới ngoài lăng — điểm nhìn Albedo, văn phòng thủ hộ. Albedo không nhắc đơn vị bí mật với Ainz Ooal Gown.
-- Demiurge thiếu một mảnh — điểm nhìn Demiurge, phòng kế hoạch. Demiurge nhận ra mình thiếu dữ liệu mà Albedo chưa đưa.
-- Bản đồ đức tin — điểm nhìn Nabe, thị trấn biên giới. Nabe khoanh vùng một kho phụ chứ không tìm thấy Downfall of Castle and Country.
-- Tin đồn từ nước láng giềng — điểm nhìn Ainz Ooal Gown, phòng khách ngoại giao. Sứ giả hỏi liệu Thần quyền quốc Slane có còn tồn tại sau chiến dịch.
-- Kho trống — điểm nhìn Demiurge, báo cáo đêm. Demiurge báo địa điểm nghi ngờ không chứa Bảo vật thế giới.
+- Cửa khẩu vỡ rồi dừng — 3200 từ, điểm nhìn Cocytus. Cocytus chiếm cửa khẩu rồi dừng vì chưa thấy dấu hiệu Bảo vật thế giới.
+- Rút để khỏi lộ món đồ — 3200 từ, điểm nhìn chỉ huy biên phòng. Chỉ huy biên phòng rút lui để khỏi lộ món đồ điều khiển.
+- Một nước đóng cửa — 3200 từ, điểm nhìn sứ giả. Sứ giả báo nước mình trung lập và đóng cửa.
+- Hình phạt, không phải chinh phục vô hạn — 3200 từ, điểm nhìn Ainz Ooal Gown. Ainz nói với triều thần rằng đây là hình phạt, không phải chinh phục vô hạn.
+- Sai tốc độ rút — 3200 từ, điểm nhìn Demiurge. Demiurge thừa nhận đã tính sai tốc độ rút của Thần quyền quốc Slane.
+- Cái giá trong kinh đô — 6000 từ, điểm nhìn Sebas Tian. Sebas Tian thấy chiến dịch đầu tiên đổi cách dân chúng nhìn Pháp vương.
 
-### Những trận không phải là kết thúc (chapter)
+## Sụp đổ
 
-Va chạm đầu tiên làm lộ tính toán sai của cả hai bên, chưa hạ được thánh điện.
+### Chương 5 — Hắc điển (chapter, 24000 từ)
 
-- Cửa khẩu vỡ — điểm nhìn Cocytus, cửa khẩu phía nam. Cocytus chiếm cửa khẩu rồi dừng vì chưa thấy dấu hiệu Bảo vật thế giới.
-- Phép thuật kinh hoàng và một cái bẫy không nổ — điểm nhìn chỉ huy biên phòng, đồn phía nam. Chỉ huy biên phòng rút lui để khỏi lộ món đồ điều khiển.
-- Nước láng giềng đóng cửa — điểm nhìn sứ giả, triều đình láng giềng. Sứ giả báo nước mình trung lập và đóng cửa.
-- Ainz diễn trước triều thần — điểm nhìn Ainz Ooal Gown, phòng khách. Ainz nói với triều thần rằng đây là hình phạt, không phải chinh phục vô hạn.
-- Shalltear nhìn bản đồ từ xa — điểm nhìn Shalltear Bloodfallen, ban công lăng. Shalltear Bloodfallen ở lại Đại Lăng Nazarick trong trận đầu.
-- Sai một nhịp — điểm nhìn Demiurge, bàn bản đồ. Demiurge thừa nhận đã tính sai tốc độ rút của Thần quyền quốc Slane.
+- Đêm món đồ suýt rời kho — 10000 từ, điểm nhìn chỉ huy Hắc điển. Chỉ huy Hắc điển chưa dám đưa Downfall of Castle and Country ra trận, rồi Shalltear Bloodfallen không lao vào khi thấy dấu hiệu Bảo vật thế giới, và hướng kho bị lộ.
+- Albedo đưa hướng, không đưa bí mật — 3500 từ, điểm nhìn Albedo. Albedo đưa cho Demiurge hướng kho, không đưa bí mật riêng.
+- Không xóa mọi thành phố — 3500 từ, điểm nhìn Ainz Ooal Gown. Ainz chọn đánh sụp chính quyền trung ương thay vì xóa mọi thành phố.
+- Hắc điển vỡ đội hình — 3500 từ, điểm nhìn chỉ huy Hắc điển. Chỉ huy Hắc điển bỏ đội hình để giấu món đồ.
+- Shalltear không được nhát cuối — 3500 từ, điểm nhìn Shalltear Bloodfallen. Shalltear Bloodfallen rời đồi thông mà không được giao việc kết liễu.
 
-## Hắc điển và sụp đổ
+### Chương 6 — Phòng tuyến gãy (chapter, 22000 từ)
 
-### Hắc điển (chapter)
+- Kho phụ thất thủ — 3200 từ, điểm nhìn Cocytus. Cocytus chiếm kho phụ và không thấy Downfall of Castle and Country.
+- Mất liên lạc phía nam — 3200 từ, điểm nhìn thượng tế. Thượng tế mất liên lạc với cửa khẩu phía nam.
+- Dân rút, không bị săn — 3200 từ, điểm nhìn thị dân. Thị dân sơ tán mà không bị Nazarick đuổi theo.
+- Mare khóa đường — 3200 từ, điểm nhìn Mare Bello Fiore. Mare Bello Fiore khóa đường tiếp tế.
+- Chính quyền mất thống nhất — 3200 từ, điểm nhìn Demiurge. Demiurge kết luận chính quyền trung ương đã mất thống nhất.
+- Nước ngoài viết như thể Slane đang tắt — 6000 từ, điểm nhìn sứ giả. Sứ giả soạn công hàm theo giả định Thần quyền quốc Slane không còn giữ được biên giới.
 
-Bước ngoặt là món đồ và những người được giao giữ nó, không phải một trận đấu ngang tài.
+### Chương 7 — Thánh điện không còn là một nước (chapter, 22000 từ)
 
-- Đêm trước khi món đồ rời kho — điểm nhìn chỉ huy Hắc điển, hầm thánh. Chỉ huy Hắc điển chưa dám đưa Downfall of Castle and Country ra trận.
-- Shalltear được gọi, với một sợi xích — điểm nhìn Ainz Ooal Gown, phòng ngai. Ainz giao Shalltear Bloodfallen một nhiệm vụ hẹp với điều kiện rút ngay.
-- Gặp nhau không phải để so kiếm — điểm nhìn Shalltear Bloodfallen, đồi thông. Shalltear Bloodfallen không lao vào khi thấy dấu hiệu Bảo vật thế giới.
-- Món đồ được giấu lần nữa — điểm nhìn chỉ huy Hắc điển, hầm phụ. Chỉ huy Hắc điển rút khỏi đồi thông và để lộ hướng kho.
-- Albedo khóa hướng — điểm nhìn Albedo, bàn tình báo. Albedo đưa cho Demiurge hướng kho, không đưa bí mật riêng.
-- Ainz quyết định không hủy cả nước trong một đêm — điểm nhìn Ainz Ooal Gown, bàn bản đồ. Ainz chọn đánh sụp chính quyền trung ương thay vì xóa mọi thành phố.
+- Cửa thánh điện — 3200 từ, điểm nhìn Ainz Ooal Gown. Ainz vào thánh điện trung ương để kết thúc chính quyền, không để mở một tập sau.
+- Hội đồng không còn đầu hàng được — 3200 từ, điểm nhìn thượng tế. Thượng tế không còn giữ được hội đồng.
+- Thu Downfall of Castle and Country — 6000 từ, điểm nhìn Albedo. Albedo thu Downfall of Castle and Country trước khi nó được kích hoạt.
+- Shalltear đứng ngoài cửa — 3200 từ, điểm nhìn Shalltear Bloodfallen. Shalltear Bloodfallen chứng kiến chính quyền sụp mà không được giao nhát cuối.
+- Antilene vẫn trong băng — 3200 từ, điểm nhìn Antilene. Antilene vẫn ở trong Ngục Băng sau khi Thần quyền quốc Slane sụp.
+- Những người từng ra lệnh — 3200 từ, điểm nhìn thượng tế. Những người từng ra lệnh hoặc bỏ chạy hoặc bị giữ, và các thành phố không bị xóa trong một đêm.
 
-### Phòng tuyến gãy (chapter)
+## Sau chiến dịch
 
-Khi kho và đường rút không còn, quân Slane không còn cách giữ một mặt trận.
+### Chương 8 — Cái giá của một vùng trống (chapter, 20000 từ)
 
-- Kho phụ thất thủ — điểm nhìn Cocytus, kho phụ. Cocytus chiếm kho phụ và không thấy Downfall of Castle and Country.
-- Thánh điện mất liên lạc với biên giới — điểm nhìn thượng tế, phòng hội đồng. Thượng tế mất liên lạc với cửa khẩu phía nam.
-- Đường rút của dân — điểm nhìn thị dân, phố dưới. Thị dân sơ tán mà không bị Nazarick đuổi theo.
-- Hắc điển vỡ đội hình — điểm nhìn chỉ huy Hắc điển, hành lang hầm. Chỉ huy Hắc điển bỏ đội hình để giấu món đồ.
-- Mare khóa đường tiếp tế — điểm nhìn Mare Bello Fiore, đường núi. Mare Bello Fiore khóa đường tiếp tế.
-- Demiurge nhìn thấy điểm gãy — điểm nhìn Demiurge, bàn bản đồ. Demiurge kết luận chính quyền trung ương đã mất thống nhất.
+- Sebas nghe tin sụp — 4000 từ, điểm nhìn Sebas Tian. Sebas Tian nghe tin chính quyền Slane đã sụp.
+- Dân chạy, không phải quân — 4000 từ, điểm nhìn Aura Bella Fiora. Aura Bella Fiora gặp dân chạy nạn chứ không gặp một đội quân.
+- Khoảng trống tộc elf còn đó — 4000 từ, điểm nhìn Mare Bello Fiore. Mare Bello Fiore thấy khoảng trống quyền lực tộc elf vẫn còn.
+- Công nhận một nước đã mất — 4000 từ, điểm nhìn Ainz Ooal Gown. Sứ giả công nhận Thần quyền quốc Slane không còn là một nước.
+- Việc mới không phải chiến dịch còn dang — 4000 từ, điểm nhìn Demiurge. Demiurge ghi vùng trống quyền lực là xung đột mới, không phải chiến dịch còn dang.
 
-### Thánh điện không còn là một nước (chapter)
+### Lời kết — Thế giới đã thấy (epilogue, 8000 từ)
 
-Chính quyền Slane sụp. Món đồ nguy hiểm bị thu hoặc bị chôn cùng với người giữ nó. Đây là hồi kết của chiến dịch, không phải lời hứa cho tập sau.
-
-- Cửa thánh điện — điểm nhìn Ainz Ooal Gown, sân thánh điện. Ainz vào thánh điện trung ương để kết thúc chính quyền, không để mở một tập sau.
-- Hội đồng vỡ — điểm nhìn thượng tế, phòng hội đồng. Thượng tế không còn giữ được hội đồng.
-- Món đồ cuối — điểm nhìn Albedo, hầm thánh. Albedo thu Downfall of Castle and Country trước khi nó được kích hoạt.
-- Shalltear đứng ngoài cửa — điểm nhìn Shalltear Bloodfallen, sân thánh điện. Shalltear Bloodfallen chứng kiến chính quyền sụp mà không được giao nhát cuối.
-- Antilene nghe tin nước mình — điểm nhìn Antilene, Ngục Băng. Antilene vẫn ở trong Ngục Băng sau khi Thần quyền quốc Slane sụp.
-
-## Sau khi một cường quốc biến mất
-
-### Cái giá của một vùng trống (chapter)
-
-Xóa một chính quyền không tạo ra hòa bình. Nó tạo ra khoảng trống, người chạy nạn và những nước đang tính nước đi kế.
-
-- Kinh đô Pháp thuật nghe chuông khác — điểm nhìn Sebas Tian, kinh đô. Sebas Tian nghe tin chính quyền Slane đã sụp.
-- Người chạy về phía rừng — điểm nhìn Aura Bella Fiora, rừng phía đông. Aura Bella Fiora gặp dân chạy nạn chứ không gặp một đội quân.
-- Khoảng trống của tộc elf — điểm nhìn Mare Bello Fiore, bìa rừng elf. Mare Bello Fiore thấy khoảng trống quyền lực tộc elf vẫn còn.
-- Một nước viết công hàm — điểm nhìn Ainz Ooal Gown, phòng khách. Sứ giả công nhận Thần quyền quốc Slane không còn là một nước.
-- Demiurge ghi những việc chưa xong — điểm nhìn Demiurge, phòng kế hoạch. Demiurge ghi vùng trống quyền lực là xung đột mới, không phải chiến dịch còn dang.
-
-### Lời kết — Thế giới đã thấy (epilogue)
-
-Các nước khác nhìn một cường quốc biến mất và hiểu Vương quốc Pháp thuật làm được việc đó.
-
-- Ainz một mình sau buổi triều — điểm nhìn Ainz Ooal Gown, phòng làm việc. Ainz xác nhận Thần quyền quốc Slane đã bị đánh bại trong tập này.
-- Shalltear không được một câu tha — điểm nhìn Shalltear Bloodfallen, hành lang. Shalltear Bloodfallen không nhận được lời tha thứ.
-- Bức thư từ một triều đình xa — điểm nhìn Albedo, văn phòng. Albedo nhận công hàm của một nước đang tính lại vị trí của mình.
+- Ainz sau buổi triều — 4000 từ, điểm nhìn Ainz Ooal Gown. Ainz xác nhận Thần quyền quốc Slane đã bị đánh bại trong tập này.
+- Không có câu tha, có một bức thư — 4000 từ, điểm nhìn Shalltear Bloodfallen. Shalltear Bloodfallen không nhận được lời tha thứ, và Albedo nhận công hàm của một nước đang tính lại vị trí của mình.
 

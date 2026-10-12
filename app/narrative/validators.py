@@ -129,11 +129,11 @@ def validate_plot(spec: SceneSpec, prose: str) -> dict:
             }
         )
     count = word_count(prose)
-    if spec.target_word_count >= 600 and count < int(spec.target_word_count * 0.6):
+    if spec.target_word_count >= 600 and count < int(spec.target_word_count * 0.9):
         issues.append(
             {
                 "severity": "high",
-                "message": "Cảnh chưa đủ dài so với kế hoạch và không được xem là đã xong.",
+                "message": "Bản thảo dưới 90% số từ đã duyệt và không được xem là đã xong.",
                 "evidence": f"{count}/{spec.target_word_count}",
                 "character": "",
             }

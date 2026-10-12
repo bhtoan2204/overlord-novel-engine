@@ -279,19 +279,21 @@ def _scene_nodes(session: Session, project_id: str) -> list[OutlineNode]:
 
 def next_scene(session: Session, project_id: str) -> OutlineNode | None:
     scenes = _scene_nodes(session, project_id)
-    chapters = {
-        row.id: row
-        for row in session.query(OutlineNode).filter(OutlineNode.project_id == project_id, OutlineNode.level == "chapter")
-    }
-    arcs = {
-        row.id: row
-        for row in session.query(OutlineNode).filter(OutlineNode.project_id == project_id, OutlineNode.level == "arc")
-    }
+    nodes = {row.id: row for row in session.query(OutlineNode).filter(OutlineNode.project_id == project_id).all()}
 
     def sort_key(scene: OutlineNode):
-        chapter = chapters.get(scene.parent_id)
-        arc = arcs.get(chapter.parent_id) if chapter else None
-        return (arc.ordinal if arc else 0, chapter.ordinal if chapter else 0, scene.ordinal)
+        part = nodes.get(scene.parent_id)
+        chapter = nodes.get(part.parent_id) if part and part.level == "part" else part
+        if part and part.level == "chapter":
+            chapter = part
+            part = None
+        arc = nodes.get(chapter.parent_id) if chapter else None
+        return (
+            arc.ordinal if arc else 0,
+            chapter.ordinal if chapter else 0,
+            part.ordinal if part else 0,
+            scene.ordinal,
+        )
 
     for scene in sorted(scenes, key=sort_key):
         if scene.status != "approved":
@@ -349,9 +351,11 @@ def generate_scene(
         project.workflow_state = project.resume_state or WorkflowState.OUTLINE_APPROVED.value
     node = next_scene(session, project.id)
     if node is None:
-        project.workflow_state = WorkflowState.VOLUME_COMPLETED.value
+        from app.narrative.completion import refresh_rollup
+
+        status = refresh_rollup(session, project, ratio=settings.part_completion_ratio)
         project.updated_at = _now()
-        return {"done": True}
+        return {"done": False, "status": "incomplete", "volume_status": status}
     if node.status == "approved" and not force:
         return {"skipped": node.id}
     control = GenerationControl(session, job)
@@ -491,12 +495,9 @@ def _refresh_chapter_status(session: Session, project: Project, node: OutlineNod
         if chapter:
             chapter.status = "approved"
         project.workflow_state = WorkflowState.CHAPTER_COMPLETED.value
+    from app.narrative.completion import refresh_rollup
+
+    refresh_rollup(session, project, ratio=0.90)
     pending = next_scene(session, project.id)
-    if pending is None and project.workflow_state != WorkflowState.VOLUME_COMPLETED.value:
-        chapters = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "chapter").all()
-        if chapters and all(item.status == "approved" for item in chapters):
-            project.workflow_state = WorkflowState.VOLUME_COMPLETED.value
-        else:
-            project.workflow_state = WorkflowState.CHAPTER_COMPLETED.value
-    elif pending is not None and project.workflow_state == WorkflowState.CHAPTER_COMPLETED.value:
+    if pending is not None and project.workflow_state == WorkflowState.CHAPTER_COMPLETED.value:
         project.workflow_state = WorkflowState.CHAPTER_PLANNED.value

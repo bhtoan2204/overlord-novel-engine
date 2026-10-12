@@ -40,9 +40,12 @@ class Settings(BaseSettings):
     seed: int = 17
     planner_mode: str = "deterministic"
     scene_target_words: int = 1600
-    volume_target_words: int = 60000
-    volume_target_words_min: int = 45000
-    volume_target_words_max: int = 65000
+    volume_target_words: int = 200_000
+    volume_target_words_min: int = 180_000
+    volume_target_words_max: int = 240_000
+    part_completion_ratio: float = 0.90
+    max_chunks_per_job: int = 24
+    chunk_target_words: int = 250
     max_json_attempts: int = 3
     training_enabled: bool = False
     wait_for_vram: bool = False

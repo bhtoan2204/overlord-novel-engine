@@ -55,14 +55,15 @@ def write_scene_chunks(
 ) -> DraftOutput:
     """Several short completions. A truncated chunk is continued, not stored as a finished scene."""
     target = max(1, spec.target_word_count)
-    floor = int(target * 0.85)
+    floor = int(target * 0.90)
     chunks: list[str] = []
     reasons: list[str] = []
     advice = " ".join(recommendations or [])
     if preference_notes:
         advice = (advice + " " + preference_notes).strip()
     context_lines = [section["text"] for section in (context_pack.get("sections") or [])[:6]]
-    for index in range(1, 8):
+    limit = max(4, (target + 149) // 150)
+    for index in range(1, limit + 1):
         so_far = "\n\n".join(chunks).strip()
         remaining = target - word_count(so_far)
         if so_far and remaining <= 40 and word_count(so_far) >= floor:
@@ -106,8 +107,6 @@ def write_scene_chunks(
         piece = _clean_chunk(result.text)
         reasons.append(result.finish_reason or "stop")
         if not piece or _rejects(so_far, piece) or _duplicate_paragraphs(chunks + [piece]):
-            if word_count(so_far) >= int(target * 0.6):
-                break
             continue
         chunks.append(piece)
         if (result.finish_reason or "") not in {"length", "truncation"} and word_count("\n\n".join(chunks)) >= floor:
