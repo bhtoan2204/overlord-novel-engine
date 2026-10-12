@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Generate{% endblock %}
+{% block body %}
+<h1>Generation</h1>
+<p>State: <strong>{{ project.workflow_state }}</strong>. One scene at a time. Background start is capped at three scenes so a click cannot launch the whole volume.</p>
+<form action="/generate/step" method="post"><button type="submit">Generate next scene</button></form>
+<form action="/generate/start" method="post" class="inline">
+  <label>Scenes <input name="limit_scenes" type="number" min="1" max="3" value="1"></label>
+  <button type="submit" {% if running %}disabled{% endif %}>Start background job</button>
+</form>
+<form action="/generate/retry" method="post"><button type="submit">Arm retry after failure</button></form>
+<table>
+  <tr><th>State</th><th>Attempts</th><th>Checkpoint</th><th></th></tr>
+  {% for job in jobs %}
+  <tr>
+    <td>{{ job.state }}</td>
+    <td>{{ job.attempts }}/{{ job.max_attempts }}</td>
+    <td>{{ job.checkpoint }}</td>
+    <td>
+      <form action="/generate/control" method="post" class="inline">
+        <input type="hidden" name="job_id" value="{{ job.id }}">
+        <button name="action" value="pause">Pause</button>
+        <button name="action" value="resume">Resume</button>
+        <button name="action" value="cancel">Cancel</button>
+      </form>
+    </td>
+  </tr>
+  <tr><td colspan="4">{{ job.error or "" }}</td></tr>
+  {% else %}
+  <tr><td colspan="4">No jobs.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

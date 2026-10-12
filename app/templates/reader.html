@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Reader{% endblock %}
+{% block body %}
+<h1>Reader</h1>
+<form method="get" action="/reader">
+  <input name="q" value="{{ query }}" placeholder="Search approved scenes">
+  <button type="submit">Search</button>
+</form>
+{% for scene, draft in drafts %}
+<article class="card">
+  <h2><a href="/reader/{{ scene.id }}">{{ scene.title }}</a></h2>
+  <p>{{ draft.prose[:500] }}{% if draft.prose|length > 500 %}…{% endif %}</p>
+</article>
+{% else %}
+<p>No approved scenes match.</p>
+{% endfor %}
+{% endblock %}

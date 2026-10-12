@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Scene{% endblock %}
+{% block body %}
+<h1>{{ scene.title if scene else "Missing scene" }}</h1>
+{% for draft in drafts %}
+<article class="card">
+  <h2>Draft {{ draft.iteration }}{% if draft.selected %} · selected{% endif %}</h2>
+  <div class="prose">{{ draft.prose }}</div>
+</article>
+{% endfor %}
+<h2>Validation</h2>
+{% for report in reports %}
+<article class="card">
+  <h3>{{ report.validator }} {% if report.human_review %}· human review{% endif %}</h3>
+  <p>Scores: {{ report.scores }}</p>
+  <ul>{% for issue in report.issues %}<li>{{ issue.severity }}: {{ issue.message }}</li>{% endfor %}</ul>
+  <ul>{% for item in report.recommendations %}<li>{{ item }}</li>{% endfor %}</ul>
+</article>
+{% endfor %}
+{% endblock %}

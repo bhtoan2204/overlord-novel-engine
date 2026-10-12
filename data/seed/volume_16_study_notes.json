@@ -1,0 +1,364 @@
+{
+  "title": "Ghi chú nghiên cứu gốc — tình thế sau Overlord tập 16",
+  "notes": "Ghi chú gốc, không phải nguyên văn tiểu thuyết. Sau tập 16, Ainz Ooal Gown đã biết Thần quyền quốc Slane dùng Bảo vật thế giới để điều khiển Shalltear Bloodfallen. Ainz ra lệnh đình chỉ mọi hoạt động ngoài phòng thủ Đại Lăng Nazarick nhằm chuẩn bị chiến tranh. Decem Hougan đã chết. Antilene Heran Fouche còn sống và bị giam ở Ngục Băng. Albedo vẫn giấu đơn vị bí mật. Vương quốc Re-Estize đã sụp đổ từ trước. Đế quốc Baharuth do Jircniv cai trị chỉ là đồng minh yếu hơn.",
+  "license": "original-structured-notes",
+  "characters": [
+    {
+      "name": "Ainz Ooal Gown",
+      "aliases": ["Momonga", "Pháp vương"],
+      "faction": "Đại Lăng Nazarick",
+      "race": "Undead Overlord",
+      "abilities": ["phép thuật cấp cao", "điều khiển thuộc hạ Nazarick", "Control Amnesia"],
+      "known_limitations": ["phải giữ vẻ uy nghiêm trước thủ hộ tầng", "không miễn nhiễm với việc bị Bảo vật thế giới khuất phục nếu trúng đúng điều kiện"],
+      "personality": "Diễn vai quân vương tuyệt đối, bên trong vẫn tính toán như người chơi cũ và rất sợ mắc lỗi trước thuộc hạ.",
+      "motivations": ["bảo vệ Nazarick", "trả món nợ tinh thần vì Shalltear từng bị điều khiển", "tìm dấu vết người chơi khác"],
+      "relationships": {"Albedo": "chấp chính và người hầu cận trung thành nhất", "Demiurge": "quân sư mà Ainz không dám làm vỡ hình tượng", "Shalltear Bloodfallen": "thủ hộ tầng từng bị điều khiển"},
+      "knowledge_state": {
+        "knows": ["Thần quyền quốc Slane đã dùng Bảo vật thế giới lên Shalltear", "Antilene đang bị giam ở Ngục Băng", "Decem Hougan đã chết"],
+        "does_not_know": ["Albedo đang giữ một đơn vị bí mật tìm các Đấng Tối Cao khác"]
+      },
+      "current_status": "Còn sống, vừa ra lệnh đình chỉ hoạt động ngoài phòng thủ để chuẩn bị chiến tranh với Thần quyền quốc Slane.",
+      "alive": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Albedo",
+      "aliases": [],
+      "faction": "Đại Lăng Nazarick",
+      "race": "Succubus",
+      "abilities": ["điều hành Nazarick", "chỉ huy đơn vị bí mật"],
+      "known_limitations": ["không được để Ainz phát hiện mục tiêu thật của đơn vị bí mật"],
+      "personality": "Trung thành đến mức nguy hiểm, ngăn nắp, giấu những việc cô cho là cần thiết.",
+      "motivations": ["phục vụ Ainz", "loại bỏ dấu vết của các Đấng Tối Cao khác"],
+      "relationships": {"Ainz Ooal Gown": "chủ nhân", "Demiurge": "đồng sự"},
+      "knowledge_state": {"knows": ["đơn vị bí mật của mình", "lệnh chiến tranh mới"], "does_not_know": []},
+      "current_status": "Còn sống, nhận lệnh chuẩn bị chiến tranh và vẫn giữ bí mật với Ainz.",
+      "alive": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Demiurge",
+      "aliases": [],
+      "faction": "Đại Lăng Nazarick",
+      "race": "Demon",
+      "abilities": ["kế hoạch chiến lược", "chỉ huy quân Nazarick"],
+      "known_limitations": ["hay diễn giải sự do dự của Ainz thành một kế hoạch sâu hơn thực tế"],
+      "personality": "Lịch sự, tàn nhẫn, cực kỳ có hệ thống.",
+      "motivations": ["biến ý chí của Ainz thành kế hoạch hoàn hảo"],
+      "relationships": {"Ainz Ooal Gown": "chủ nhân"},
+      "knowledge_state": {"knows": ["lệnh chiến tranh", "Shalltear từng bị điều khiển"], "does_not_know": ["bí mật riêng của Albedo"]},
+      "current_status": "Còn sống, sẵn sàng biến lệnh trả thù thành một chiến dịch.",
+      "alive": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Shalltear Bloodfallen",
+      "aliases": [],
+      "faction": "Đại Lăng Nazarick",
+      "race": "True Vampire",
+      "abilities": ["giao chiến trực tiếp", "hồi phục"],
+      "known_limitations": ["từng bị Bảo vật thế giới điều khiển"],
+      "personality": "Kiêu hãnh, dễ tổn thương khi nhắc đến lần mất kiểm soát.",
+      "motivations": ["được Ainz tin dùng lại"],
+      "relationships": {"Ainz Ooal Gown": "chủ nhân"},
+      "knowledge_state": {"knows": ["mình từng bị điều khiển", "Thần quyền quốc Slane là phía chịu trách nhiệm"], "does_not_know": ["toàn bộ kế hoạch của Demiurge"]},
+      "current_status": "Còn sống, là nguyên cớ cảm xúc của lệnh chiến tranh.",
+      "alive": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Cocytus",
+      "aliases": [],
+      "faction": "Đại Lăng Nazarick",
+      "race": "Insect fighter",
+      "abilities": ["chỉ huy chiến trận", "vũ khí cận chiến"],
+      "known_limitations": ["thiên về giao chiến trực diện hơn là mưu kế"],
+      "personality": "Trung thực, trọng danh dự chiến binh.",
+      "motivations": ["đánh một trận xứng đáng"],
+      "relationships": {"Ainz Ooal Gown": "chủ nhân"},
+      "knowledge_state": {"knows": ["Nazarick sắp có chiến dịch"], "does_not_know": ["bí mật của Albedo"]},
+      "current_status": "Còn sống.",
+      "alive": true,
+      "confidence": 0.6
+    },
+    {
+      "name": "Aura Bella Fiora",
+      "aliases": ["Aura"],
+      "faction": "Đại Lăng Nazarick",
+      "race": "Dark Elf",
+      "abilities": ["dò tìm", "chỉ huy thú"],
+      "known_limitations": ["không nên bị viết như một đứa trẻ nông nổi khi đang làm nhiệm vụ"],
+      "personality": "Nhanh, thẳng, gắn với Mare.",
+      "motivations": ["hoàn thành việc Ainz giao"],
+      "relationships": {"Mare Bello Fiore": "anh em"},
+      "knowledge_state": {"knows": ["Decem đã chết", "thủ đô elf vừa bị khuất phục"], "does_not_know": ["bí mật của Albedo"]},
+      "current_status": "Còn sống, vừa rời chiến dịch ở vương quốc elf.",
+      "alive": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Mare Bello Fiore",
+      "aliases": ["Mare"],
+      "faction": "Đại Lăng Nazarick",
+      "race": "Dark Elf",
+      "abilities": ["phép thuật druid hủy diệt", "đã hạ Antilene"],
+      "known_limitations": ["ngại ngùng khi phải nói trước đám đông"],
+      "personality": "Nhút nhát trong lời nói, dứt khoát khi được lệnh chiến đấu.",
+      "motivations": ["không làm Ainz thất vọng"],
+      "relationships": {"Aura Bella Fiora": "chị em"},
+      "knowledge_state": {"knows": ["mình đã đánh bại Antilene"], "does_not_know": ["kế hoạch chính trị của Demiurge"]},
+      "current_status": "Còn sống.",
+      "alive": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Antilene Heran Fouche",
+      "aliases": ["Zesshi Zetsumei"],
+      "faction": "Thần quyền quốc Slane",
+      "race": "Half-elf god-kin",
+      "abilities": ["võ trang bị của Thần quyền quốc", "thể chất vượt loài người"],
+      "known_limitations": ["đang bị giam, không còn tự do hành động"],
+      "personality": "Sắc, bất cần, mang hận với Decem.",
+      "motivations": ["sống sót qua cuộc thẩm vấn"],
+      "relationships": {"Decem Hougan": "kẻ đã chết và là cha"},
+      "knowledge_state": {"knows": ["Hắc điển và việc Shalltear bị điều khiển"], "does_not_know": ["nội bộ Nazarick"]},
+      "current_status": "Còn sống, bị giam ở Ngục Băng.",
+      "alive": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Decem Hougan",
+      "aliases": ["Elf King"],
+      "faction": "Vương quốc Elf",
+      "race": "Elf",
+      "abilities": ["phép thuật hoàng tộc elf"],
+      "known_limitations": ["đã chết"],
+      "personality": "Ngạo mạn.",
+      "motivations": [],
+      "relationships": {"Antilene Heran Fouche": "con gái"},
+      "knowledge_state": {"knows": [], "does_not_know": []},
+      "current_status": "Đã chết ở cuối tập 16.",
+      "alive": false,
+      "confidence": 0.7
+    },
+    {
+      "name": "Jircniv Rune Farlord El Nix",
+      "aliases": ["Hoàng đế Baharuth"],
+      "faction": "Đế quốc Baharuth",
+      "race": "Human",
+      "abilities": ["chính trị đế quốc", "ngoại giao cưỡng bức"],
+      "known_limitations": ["đế quốc yếu hơn Nazarick rất nhiều"],
+      "personality": "Tỉnh, kiêu, biết sợ đúng chỗ.",
+      "motivations": ["giữ đế quốc khỏi bị nghiền"],
+      "relationships": {"Ainz Ooal Gown": "đồng minh không ngang hàng"},
+      "knowledge_state": {"knows": ["Vương quốc Pháp thuật mạnh hơn đế quốc"], "does_not_know": ["lý do thật của lệnh chiến tranh mới"]},
+      "current_status": "Còn sống, cai trị Đế quốc Baharuth.",
+      "alive": true,
+      "confidence": 0.6
+    }
+  ],
+  "locations": [
+    {
+      "name": "Đại Lăng Nazarick",
+      "region": "căn cứ của Ainz",
+      "controlling_faction": "Đại Lăng Nazarick",
+      "history": "Căn cứ được chuyển đến thế giới mới cùng Ainz. Phòng thủ của lăng là việc không được bỏ ngay cả khi có chiến tranh bên ngoài.",
+      "important_events": ["Lệnh tổng động viên sau tập 16"],
+      "confidence": 0.7
+    },
+    {
+      "name": "Ngục Băng",
+      "region": "Đại Lăng Nazarick",
+      "controlling_faction": "Đại Lăng Nazarick",
+      "history": "Nơi giam tù nhân đặc biệt. Antilene bị đưa về đây sau tập 16.",
+      "important_events": ["Thẩm vấn Antilene"],
+      "confidence": 0.7
+    },
+    {
+      "name": "Vương quốc Elf",
+      "region": "rừng elf",
+      "controlling_faction": "trống ngôi",
+      "history": "Decem chết cuối tập 16. Kho báu bị Nazarick lấy. Quyền lực địa phương chưa được dựng lại.",
+      "important_events": ["Cái chết của Decem"],
+      "confidence": 0.6
+    }
+  ],
+  "factions": [
+    {
+      "name": "Đại Lăng Nazarick",
+      "members": ["Ainz Ooal Gown", "Albedo", "Demiurge", "Shalltear Bloodfallen", "Cocytus", "Aura Bella Fiora", "Mare Bello Fiore"],
+      "leadership": ["Ainz Ooal Gown", "Albedo"],
+      "objectives": ["bảo vệ lăng", "chuẩn bị chiến tranh với Thần quyền quốc Slane"],
+      "alliances": ["Đế quốc Baharuth ở mức đồng minh không ngang hàng"],
+      "enemies": ["Thần quyền quốc Slane"],
+      "military_capabilities": ["thủ hộ tầng", "quân tạo từ xác và dân Nazarick", "phép thuật vượt các nước loài người"],
+      "confidence": 0.7
+    },
+    {
+      "name": "Thần quyền quốc Slane",
+      "members": ["Antilene Heran Fouche"],
+      "leadership": ["giáo quyền cấp cao", "Hắc điển"],
+      "objectives": ["giữ Bảo vật thế giới", "đối phó người chơi"],
+      "alliances": [],
+      "enemies": ["Đại Lăng Nazarick"],
+      "military_capabilities": ["Hắc điển", "Bảo vật thế giới đã từng điều khiển Shalltear"],
+      "confidence": 0.6
+    },
+    {
+      "name": "Đế quốc Baharuth",
+      "members": ["Jircniv Rune Farlord El Nix"],
+      "leadership": ["Jircniv Rune Farlord El Nix"],
+      "objectives": ["sống sót bên cạnh Vương quốc Pháp thuật"],
+      "alliances": ["Vương quốc Pháp thuật"],
+      "enemies": [],
+      "military_capabilities": ["quân đội đế quốc loài người, yếu hơn Nazarick"],
+      "confidence": 0.6
+    }
+  ],
+  "events": [
+    {
+      "event_key": "shalltear-controlled",
+      "title": "Shalltear bị Bảo vật thế giới điều khiển",
+      "chronological_order": 30,
+      "participants": ["Shalltear Bloodfallen"],
+      "location": "ngoại vi",
+      "consequences": ["Ainz mang mối hận không tên cho đến tập 16"],
+      "summary": "Một Bảo vật thế giới của Thần quyền quốc Slane đã điều khiển Shalltear. Sự việc xảy ra rất sớm và chỉ được gọi đúng tên thủ phạm ở tập 16.",
+      "timeline": "main",
+      "confidence": 0.8
+    },
+    {
+      "event_key": "re-estize-fallen",
+      "title": "Vương quốc Re-Estize sụp đổ",
+      "chronological_order": 140,
+      "participants": ["Ainz Ooal Gown"],
+      "location": "Vương quốc Re-Estize",
+      "consequences": ["bản đồ chính trị loài người mất một vương quốc"],
+      "summary": "Re-Estize đã sụp đổ trước tập 16, sau cuộc chiến mà Nazarick tiến hành. Đây là việc đã rồi, không phải việc tập 17 cần kể lại từ đầu.",
+      "timeline": "main",
+      "confidence": 0.7
+    },
+    {
+      "event_key": "decem-dead",
+      "title": "Decem Hougan chết",
+      "chronological_order": 160,
+      "participants": ["Decem Hougan", "Antilene Heran Fouche", "Mare Bello Fiore"],
+      "location": "Vương quốc Elf",
+      "consequences": ["vương quốc elf trống ngôi", "Antilene bị bắt"],
+      "summary": "Cuối tập 16, Decem chết. Mare đánh bại Antilene. Antilene bị đưa về Nazarick.",
+      "timeline": "main",
+      "confidence": 0.7
+    },
+    {
+      "event_key": "war-order",
+      "title": "Ainz ra lệnh chuẩn bị tiêu diệt Thần quyền quốc Slane",
+      "chronological_order": 161,
+      "participants": ["Ainz Ooal Gown", "Albedo"],
+      "location": "Ngục Băng",
+      "consequences": ["mọi hoạt động ngoài phòng thủ bị đình chỉ", "các thủ hộ tầng sắp được điều động"],
+      "summary": "Sau khi đọc ký ức Antilene, Ainz biết Thần quyền quốc đứng sau vụ Shalltear và ra lệnh chuẩn bị hủy diệt họ, chỉ chừa việc phòng thủ lăng.",
+      "timeline": "main",
+      "confidence": 0.8
+    }
+  ],
+  "plotlines": [
+    {
+      "plotline_key": "theocracy-war",
+      "title": "Chiến tranh với Thần quyền quốc Slane",
+      "originating_volume": 16,
+      "current_status": "unresolved",
+      "unresolved_questions": ["Bảo vật thế giới đang ở đâu?", "Hắc điển còn những ai?", "Nazarick đánh một đòn hay một chiến dịch?"],
+      "affected_characters": ["Ainz Ooal Gown", "Demiurge", "Shalltear Bloodfallen", "Cocytus"],
+      "supporting_evidence": [],
+      "priority": 1,
+      "uncertainties": ["Tương lai chính thức của cuộc chiến này chưa được viết. Mọi diễn tiến sau lệnh là fanfiction."],
+      "timeline": "main"
+    },
+    {
+      "plotline_key": "ainz-performance",
+      "title": "Ainz phải diễn vai quân vương trong lúc không muốn sai",
+      "originating_volume": 1,
+      "current_status": "unresolved",
+      "unresolved_questions": ["Ainz sẽ thừa nhận giới hạn của mình với Demiurge đến mức nào?"],
+      "affected_characters": ["Ainz Ooal Gown", "Demiurge", "Albedo"],
+      "supporting_evidence": [],
+      "priority": 1,
+      "uncertainties": ["Không có cứ liệu nào cho thấy Ainz sẽ bỏ vai diễn này."],
+      "timeline": "main"
+    },
+    {
+      "plotline_key": "shalltear-trust",
+      "title": "Mặc cảm của Shalltear",
+      "originating_volume": 3,
+      "current_status": "unresolved",
+      "unresolved_questions": ["Shalltear được giao việc gì trong chiến dịch?"],
+      "affected_characters": ["Shalltear Bloodfallen", "Ainz Ooal Gown"],
+      "supporting_evidence": [],
+      "priority": 2,
+      "uncertainties": [],
+      "timeline": "main"
+    },
+    {
+      "plotline_key": "neighbors-reaction",
+      "title": "Phản ứng của các nước khi Nazarick thu mọi hoạt động khác",
+      "originating_volume": 16,
+      "current_status": "unresolved",
+      "unresolved_questions": ["Đế quốc Baharuth có bị kéo vào chiến tranh không?", "Long vương Bạch kim có xuất hiện không?"],
+      "affected_characters": ["Jircniv Rune Farlord El Nix"],
+      "supporting_evidence": [],
+      "priority": 2,
+      "uncertainties": ["Chưa có bằng chứng về việc Long vương Bạch kim sẽ can thiệp. Không được viết sự can thiệp ấy như việc đã xảy ra."],
+      "timeline": "main"
+    },
+    {
+      "plotline_key": "elf-vacuum",
+      "title": "Khoảng trống quyền lực ở vương quốc elf",
+      "originating_volume": 16,
+      "current_status": "unresolved",
+      "unresolved_questions": ["Ai quản lý người elf còn lại?", "Nazarick ở lại hay rút?"],
+      "affected_characters": ["Aura Bella Fiora", "Mare Bello Fiore"],
+      "supporting_evidence": [],
+      "priority": 3,
+      "uncertainties": [],
+      "timeline": "main"
+    },
+    {
+      "plotline_key": "antilene-captive",
+      "title": "Antilene bị giam",
+      "originating_volume": 16,
+      "current_status": "unresolved",
+      "unresolved_questions": ["Cô còn thông tin gì?", "Số phận sau thẩm vấn là gì?"],
+      "affected_characters": ["Antilene Heran Fouche", "Ainz Ooal Gown"],
+      "supporting_evidence": [],
+      "priority": 2,
+      "uncertainties": ["Việc giết hay thu nhận Antilene đều chưa được chính sử quyết định."],
+      "timeline": "main"
+    },
+    {
+      "plotline_key": "albedo-secret",
+      "title": "Đơn vị bí mật của Albedo",
+      "originating_volume": 16,
+      "current_status": "unresolved",
+      "unresolved_questions": ["Lệnh tổng động viên có làm lộ đơn vị này không?"],
+      "affected_characters": ["Albedo", "Ainz Ooal Gown"],
+      "supporting_evidence": [],
+      "priority": 2,
+      "uncertainties": ["Ainz không biết bí mật này ở thời điểm cuối tập 16."],
+      "timeline": "main"
+    }
+  ],
+  "rules": [
+    {"category": "world_item", "statement": "Bảo vật thế giới có thể lật một giao tranh mà phép thuật thông thường không lật được. Downfall of Castle and Country đã điều khiển Shalltear.", "confidence": 0.8},
+    {"category": "yggdrasil", "statement": "Sức mạnh của Nazarick đến từ hệ thống YGGDRASIL và trang bị đã có. Không được bịa một cấp sức mạnh mới cho một nhân vật chỉ vì cảnh cần thắng.", "confidence": 0.8},
+    {"category": "wild_magic", "statement": "Wild Magic là hệ của dragon lord, khác phép YGGDRASIL. Không trộn hai hệ thành một phép mới nếu chưa có cứ liệu.", "confidence": 0.6},
+    {"category": "power_limitation", "statement": "Phòng thủ Đại Lăng Nazarick không được bỏ trống hoàn toàn khi đem quân đi đánh.", "confidence": 0.7},
+    {"category": "world_constraint", "statement": "Hồi sinh không phải một nút bấm. Không đưa người đã chết trở lại nếu cảnh không có một cơ chế đã được thiết lập từ trước.", "confidence": 0.8},
+    {"category": "magic_system", "statement": "Nhân vật chỉ biết những gì hồ sơ điểm nhìn cho phép. Người kể không được biến một bí mật của người khác thành suy nghĩ của nhân vật điểm nhìn.", "confidence": 0.8}
+  ],
+  "assertions": [
+    {"subject_type": "character", "subject_name": "Ainz Ooal Gown", "predicate": "race", "value": "Undead Overlord", "kind": "fact", "timeline": "main", "confidence": 0.9, "audience": "public", "as_of_order": 161},
+    {"subject_type": "character", "subject_name": "Decem Hougan", "predicate": "alive", "value": "dead", "kind": "fact", "timeline": "main", "confidence": 0.9, "audience": "public", "as_of_order": 160},
+    {"subject_type": "faction", "subject_name": "Thần quyền quốc Slane", "predicate": "responsibility", "value": "Đã dùng Bảo vật thế giới để điều khiển Shalltear", "kind": "fact", "timeline": "main", "confidence": 0.8, "audience": "restricted", "knowers": ["Ainz Ooal Gown", "Albedo", "Shalltear Bloodfallen"], "as_of_order": 161},
+    {"subject_type": "character", "subject_name": "Albedo", "predicate": "secret", "value": "Albedo đang giữ một đơn vị bí mật tìm các Đấng Tối Cao khác", "kind": "fact", "timeline": "main", "confidence": 0.6, "audience": "restricted", "knowers": ["Albedo"], "as_of_order": 161}
+  ]
+}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+<section class="grid">
+  <article class="card">
+    <h1>{{ project.title }}</h1>
+    <p>Workflow: <strong>{{ project.workflow_state }}</strong></p>
+    <p>Snapshot version: {{ project.snapshot_version }}</p>
+  </article>
+  <article class="card">
+    <h2>Library</h2>
+    <p>{{ sources }} sources</p>
+    <p>{{ characters }} characters in the knowledge base</p>
+  </article>
+  <article class="card">
+    <h2>Generation</h2>
+    <p>{{ approved }} / {{ scenes }} scenes approved</p>
+  </article>
+  <article class="card">
+    <h2>GPU</h2>
+    {% if gpu.available %}
+      <p>{{ gpu.name }}</p>
+      <p>{{ gpu.used_mb }} / {{ gpu.total_mb }} MB used, {{ gpu.free_mb }} MB free</p>
+    {% else %}
+      <p>GPU reading unavailable. {{ gpu.detail }}</p>
+    {% endif %}
+  </article>
+  <article class="card">
+    <h2>CPU</h2>
+    <p>{{ cpu.percent }}% across {{ cpu.cores }} cores</p>
+    <p>{{ cpu.ram_available_mb }} MB RAM available</p>
+  </article>
+</section>
+<section>
+  <h2>Jobs</h2>
+  <table>
+    <tr><th>Kind</th><th>State</th><th>Attempts</th><th>Error</th></tr>
+    {% for job in jobs %}
+    <tr><td>{{ job.kind }}</td><td>{{ job.state }}</td><td>{{ job.attempts }}/{{ job.max_attempts }}</td><td>{{ job.error or "" }}</td></tr>
+    {% else %}
+    <tr><td colspan="4">No jobs yet.</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

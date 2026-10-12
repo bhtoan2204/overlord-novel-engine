@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Planner{% endblock %}
+{% block body %}
+<h1>Story planner</h1>
+<p>State: <strong>{{ project.workflow_state }}</strong>. Generation stays locked until you approve the outline.</p>
+<form action="/planner/verify" method="post"><button type="submit">Verify canon</button></form>
+<form action="/planner/create" method="post"><button type="submit">Create Volume 17 outline</button></form>
+<form action="/planner/approve" method="post"><button type="submit">Approve outline</button></form>
+{% for node in nodes if node.level == "volume" %}
+<article class="card">
+  <h2>{{ node.title }}</h2>
+  <p>{{ node.summary }}</p>
+  <ul>{% for item in node.payload.get("alternatives", []) %}<li>{{ item }}</li>{% endfor %}</ul>
+</article>
+{% endfor %}
+{% for node in nodes if node.level == "chapter" %}
+<article class="card">
+  <h3>{{ node.title }}</h3>
+  <p>{{ node.summary }}</p>
+  <p class="meta">Caused by: {{ node.payload.get("caused_by") or "the end of Volume 16" }}</p>
+  {% if node.payload.get("alternatives") %}<p>Alternatives: {{ node.payload.get("alternatives") | join(" ") }}</p>{% endif %}
+  {% if not node.approved %}
+  <form action="/planner/node" method="post" class="stack">
+    <input type="hidden" name="node_id" value="{{ node.id }}">
+    <textarea name="summary" rows="4">{{ node.summary }}</textarea>
+    <button type="submit">Save chapter summary</button>
+  </form>
+  {% endif %}
+  <ol>
+    {% for scene in nodes if scene.parent_id == node.id and scene.level == "scene" %}
+    <li>{{ scene.title }} — {{ scene.payload.get("viewpoint_character") }} at {{ scene.payload.get("location") }}</li>
+    {% endfor %}
+  </ol>
+</article>
+{% endfor %}
+{% endblock %}

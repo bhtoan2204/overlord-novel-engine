@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Discovery{% endblock %}
+{% block body %}
+<h1>Source discovery</h1>
+<p>This stores titles and links from an index page when robots.txt allows it. It does not download chapter text.</p>
+<form class="stack" action="/discover" method="post">
+  <label>Index URL <input name="url" type="url" required placeholder="https://example.com/overlord/"></label>
+  <button type="submit">Index metadata</button>
+</form>
+<table>
+  <tr><th>Title</th><th>URL</th><th>Robots</th><th>Class</th></tr>
+  {% for entry in entries %}
+  <tr>
+    <td>{{ entry.title }}</td>
+    <td>{{ entry.url }}</td>
+    <td>{{ entry.robots_status }}</td>
+    <td>{{ entry.classification }}</td>
+  </tr>
+  {% else %}
+  <tr><td colspan="4">No catalog entries.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

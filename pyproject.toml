@@ -1,0 +1,48 @@
+[project]
+name = "overlord-novel-engine"
+version = "0.1.0"
+description = "Local-first engine for an unofficial Vietnamese Overlord continuation after Volume 16."
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.14",
+    "beautifulsoup4>=4.12",
+    "ebooklib>=0.18",
+    "faiss-cpu>=1.9",
+    "fastapi>=0.115",
+    "fpdf2>=2.8",
+    "httpx>=0.28",
+    "jinja2>=3.1",
+    "lxml>=5.3",
+    "markdown>=3.7",
+    "numpy>=2.0",
+    "psutil>=6.1",
+    "pydantic>=2.10",
+    "pydantic-settings>=2.6",
+    "pymupdf>=1.25",
+    "python-multipart>=0.0.18",
+    "pyyaml>=6.0",
+    "sqlalchemy>=2.0",
+    "uvicorn>=0.34",
+]
+
+[project.optional-dependencies]
+embed = ["sentence-transformers>=3.3"]
+train = [
+    "accelerate>=1.2",
+    "bitsandbytes>=0.45",
+    "datasets>=3.2",
+    "peft>=0.14",
+    "transformers>=4.48",
+]
+dev = ["pytest>=8.3"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Knowledge{% endblock %}
+{% block body %}
+<h1>Knowledge explorer</h1>
+<section>
+  <h2>Characters</h2>
+  {% for character in characters %}
+  <article class="card">
+    <h3>{{ character.name }}</h3>
+    <p>{{ character.race }} · {{ character.faction }} · {{ "alive" if character.alive else "dead" }}</p>
+    <p>{{ character.current_status }}</p>
+    <p>Personality: {{ character.personality }}</p>
+    <p>Knows: {{ character.knowledge_state.get("knows", []) | join("; ") }}</p>
+    <p>Does not know: {{ character.knowledge_state.get("does_not_know", []) | join("; ") }}</p>
+    <p class="meta">Evidence source {{ character.evidence_source_id }} · {{ character.canon_level }} · confidence {{ character.confidence }}</p>
+  </article>
+  {% else %}<p>No characters yet.</p>{% endfor %}
+</section>
+<section>
+  <h2>Factions</h2>
+  {% for faction in factions %}
+  <article class="card">
+    <h3>{{ faction.name }}</h3>
+    <p>Leadership: {{ faction.leadership | join(", ") }}</p>
+    <p>Objectives: {{ faction.objectives | join("; ") }}</p>
+    <p>Enemies: {{ faction.enemies | join(", ") }}</p>
+    <p class="meta">Evidence {{ faction.evidence_source_id }}</p>
+  </article>
+  {% endfor %}
+</section>
+<section>
+  <h2>Timeline</h2>
+  <ol>
+    {% for event in events %}
+    <li><strong>{{ event.title }}</strong> — {{ event.summary }} <span class="meta">{{ event.timeline }} · {{ event.canon_level }}</span></li>
+    {% endfor %}
+  </ol>
+</section>
+<section>
+  <h2>Locations</h2>
+  {% for location in locations %}
+  <p><strong>{{ location.name }}</strong> ({{ location.region }}), held by {{ location.controlling_faction }}. {{ location.history }}</p>
+  {% endfor %}
+</section>
+<section>
+  <h2>Rules</h2>
+  <ul>{% for rule in rules %}<li><strong>{{ rule.category }}</strong>: {{ rule.statement }}</li>{% endfor %}</ul>
+</section>
+<section>
+  <h2>Unresolved plotlines</h2>
+  {% for plotline in plotlines %}
+  <article class="card">
+    <h3>{{ plotline.title }}</h3>
+    <p>Volume {{ plotline.originating_volume }} · {{ plotline.current_status }} · priority {{ plotline.priority }}</p>
+    <p>{{ plotline.unresolved_questions | join(" ") }}</p>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

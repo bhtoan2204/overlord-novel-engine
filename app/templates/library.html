@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Library{% endblock %}
+{% block body %}
+<h1>Library</h1>
+<p>Full text is accepted only from files you supply, together with a license or permission note.</p>
+<form class="stack" action="/library/sample" method="post">
+  <button type="submit">Load original study notes</button>
+</form>
+<form class="stack" action="/library/upload" method="post" enctype="multipart/form-data">
+  <label>Title <input name="title" required></label>
+  <label>File <input type="file" name="file" accept=".txt,.md,.markdown,.pdf,.epub,.json" required></label>
+  <label>Type
+    <select name="source_type">
+      <option>user_notes</option>
+      <option>light_novel</option>
+      <option>bonus</option>
+      <option>profile</option>
+    </select>
+  </label>
+  <label>Canon
+    <select name="canon_level">
+      <option>USER_INTERPRETATION</option>
+      <option>PRIMARY_CANON</option>
+      <option>CANON_SUPPLEMENT</option>
+      <option>ALTERNATE_UNIVERSE</option>
+      <option>WEB_NOVEL_CONTINUITY</option>
+      <option>SECONDARY_REFERENCE</option>
+    </select>
+  </label>
+  <label>Timeline
+    <select name="timeline"><option>main</option><option>alternate</option><option>web_novel</option></select>
+  </label>
+  <label>License or permission <input name="license_status" required placeholder="original-structured-notes"></label>
+  <label><input type="checkbox" name="training_allowed" value="true"> Training rights granted</label>
+  <button type="submit">Import</button>
+</form>
+<table>
+  <tr><th>Title</th><th>Canon</th><th>License</th><th>State</th><th>Words</th></tr>
+  {% for source in sources %}
+  <tr>
+    <td>{{ source.title }}</td>
+    <td>{{ source.canon_level }}</td>
+    <td>{{ source.copyright_or_license_status }}</td>
+    <td>{{ source.processing_state }}</td>
+    <td>{{ source.word_count }}</td>
+  </tr>
+  {% else %}
+  <tr><td colspan="5">No files yet.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

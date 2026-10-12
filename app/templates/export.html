@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Export{% endblock %}
+{% block body %}
+<h1>Export</h1>
+<p>Markdown, EPUB, and PDF include the unofficial-work notice. PDF uses DejaVu so Vietnamese diacritics survive.</p>
+<form action="/export/markdown" method="post"><button type="submit">Download Markdown</button></form>
+<form action="/export/epub" method="post"><button type="submit">Download EPUB</button></form>
+<form action="/export/pdf" method="post"><button type="submit">Download PDF</button></form>
+{% endblock %}

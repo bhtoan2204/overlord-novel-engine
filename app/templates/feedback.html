@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Feedback{% endblock %}
+{% block body %}
+<h1>Feedback</h1>
+<p>Ratings change later writing instructions. They do not start fine-tuning.</p>
+{% if scenes %}
+<form class="stack" action="/feedback" method="post">
+  <label>Scene
+    <select name="node_id">
+      {% for scene in scenes %}<option value="{{ scene.id }}">{{ scene.title }}</option>{% endfor %}
+    </select>
+  </label>
+  {% for axis in axes %}
+  <label>{{ axis }} <input name="{{ axis }}" type="number" min="1" max="5" value="4" required></label>
+  {% endfor %}
+  <label>Comment <textarea name="comment" rows="4"></textarea></label>
+  <button type="submit">Save rating</button>
+</form>
+{% else %}
+<p>Approve a scene before rating it.</p>
+{% endif %}
+<ul>
+  {% for row in rows %}<li>{{ row.ratings }} — {{ row.comment }}</li>{% endfor %}
+</ul>
+{% endblock %}

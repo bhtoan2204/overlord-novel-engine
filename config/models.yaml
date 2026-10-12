@@ -1,0 +1,61 @@
+# Verified 2026-10-12 against Hugging Face model cards and HTTP Content-Length.
+# Checksums are computed locally by scripts/download_models.sh after download.
+# Do not treat a missing sha256 as a verified hash.
+models:
+  qwen3-8b-q4:
+    role: primary
+    repo: Qwen/Qwen3-8B-GGUF
+    base_model: Qwen/Qwen3-8B
+    file: Qwen3-8B-Q4_K_M.gguf
+    url: https://huggingface.co/Qwen/Qwen3-8B-GGUF/resolve/main/Qwen3-8B-Q4_K_M.gguf
+    quant: Q4_K_M
+    license: apache-2.0
+    parameters_billion: 8.2
+    layers: 36
+    kv_heads: 8
+    head_dim: 128
+    native_context: 32768
+    bytes: 5027783488
+    chat_template: embedded-qwen3-jinja
+    tokenizer: embedded-in-gguf
+    notes: >
+      Official GGUF published by Qwen. llama.cpp must be started with --jinja.
+      Thinking is disabled at runtime (--reasoning off) so drafts do not keep
+      chain-of-thought traces.
+  qwen3-4b-q4:
+    role: fallback
+    repo: Qwen/Qwen3-4B-GGUF
+    base_model: Qwen/Qwen3-4B
+    file: Qwen3-4B-Q4_K_M.gguf
+    url: https://huggingface.co/Qwen/Qwen3-4B-GGUF/resolve/main/Qwen3-4B-Q4_K_M.gguf
+    quant: Q4_K_M
+    license: apache-2.0
+    parameters_billion: 4.0
+    layers: 36
+    kv_heads: 8
+    head_dim: 128
+    native_context: 32768
+    bytes: 2497280256
+    chat_template: embedded-qwen3-jinja
+    tokenizer: embedded-in-gguf
+    notes: Smaller Qwen3 checkpoint used when the 8B weights do not fit the VRAM budget.
+embeddings:
+  default_backend: hash
+  multilingual_model: intfloat/multilingual-e5-small
+  device: cpu
+  query_prefix: "query: "
+  passage_prefix: "passage: "
+  notes: >
+    Hashing embeddings are the default so the app runs without a torch download.
+    intfloat/multilingual-e5-small is the selected Vietnamese/English model and
+    stays on CPU. Enable it with OVERLORD_EMBEDDING_BACKEND=e5 after installing
+    the embed extra.
+inference_engine:
+  name: llama.cpp
+  release: b11574
+  version: 0.6.0-dev
+  build: llama-b11574-bin-ubuntu-cuda-12.8-x64
+  reason: >
+    Driver on this machine reports CUDA 13.0. The CUDA 12.8 llama.cpp build is
+    the newest Ubuntu GPU build that does not require a newer driver than 13.0.
+    The CUDA 13.4 build was not selected for that reason.
