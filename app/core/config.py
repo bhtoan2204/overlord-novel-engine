@@ -29,8 +29,8 @@ class Settings(BaseSettings):
     embedding_model: str = "intfloat/multilingual-e5-small"
     active_model: str = "qwen3-8b-q4"
     context_tokens: int = 8192
-    vram_budget_mb: int = 9000
-    vram_reserve_mb: int = 3000
+    vram_budget_mb: int = 11000
+    vram_reserve_mb: int = 1000
     cpu_limit_percent: int = 50
     cooldown_seconds: float = 2.0
     max_revision_iterations: int = 3
@@ -40,9 +40,9 @@ class Settings(BaseSettings):
     seed: int = 17
     planner_mode: str = "deterministic"
     scene_target_words: int = 1600
-    volume_target_words: int = 200_000
-    volume_target_words_min: int = 180_000
-    volume_target_words_max: int = 240_000
+    volume_target_words: int = 350_000
+    volume_target_words_min: int = 315_000
+    volume_target_words_max: int = 385_000
     part_completion_ratio: float = 0.90
     max_chunks_per_job: int = 24
     chunk_target_words: int = 250

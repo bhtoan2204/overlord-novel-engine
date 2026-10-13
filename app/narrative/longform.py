@@ -75,10 +75,29 @@ def _memory(session: Session, beat: OutlineNode) -> str:
         _line(part.continuity["facts"], "Sự kiện phần")
     if scene and scene.continuity.get("facts"):
         _line(scene.continuity["facts"], "Sự kiện cảnh")
+    volume = next((node for node in nodes.values() if node.level == "volume"), None)
+    if volume and (volume.continuity or {}).get("facts"):
+        _line(volume.continuity["facts"], "Dòng thời gian tập")
+    finished_parts = [
+        node
+        for node in nodes.values()
+        if node.level == "part" and node.completion_status in FINISHED and (part is None or node.id != part.id) and node.summary
+    ]
+    for earlier in finished_parts[-3:]:
+        lines.append(f"Phần đã xong — {earlier.title}: {earlier.summary}")
     previous = _accepted_text(session, beat.id)
     if previous:
         words = previous.split()
-        lines.append("Đoạn liền trước: " + " ".join(words[-120:]))
+        lines.append("Đoạn liền trước: " + " ".join(words[-180:]))
+    elif scene:
+        earlier_beats = sorted(
+            (node for node in nodes.values() if node.parent_id == scene.id and node.level == "beat" and node.ordinal < beat.ordinal),
+            key=lambda node: node.ordinal,
+        )
+        if earlier_beats:
+            tail = _accepted_text(session, earlier_beats[-1].id)
+            if tail:
+                lines.append("Nhịp trước: " + " ".join(tail.split()[-120:]))
     return "\n".join(lines)
 
 
@@ -108,6 +127,18 @@ def _finish_scene(session: Session, scene, part, chapter, beat, fact: dict | Non
     if chapter:
         _remember(chapter, fact)
         _recount(session, chapter)
+        volume = session.query(OutlineNode).filter(OutlineNode.project_id == beat.project_id, OutlineNode.level == "volume").one_or_none()
+        if volume:
+            _remember(volume, fact)
+
+
+def _event_covered(prose: str, event: str) -> bool:
+    stop = {"của", "và", "là", "một", "cho", "với", "đã", "không", "trong", "được", "này", "các"}
+    needed = [word for word in event.lower().split() if len(word) > 2 and word not in stop]
+    if not needed:
+        return True
+    hit = sum(1 for word in needed if word in prose)
+    return hit / len(needed) >= 0.6
 
 
 def _maybe_gate_part(session: Session, part: OutlineNode | None) -> None:
@@ -124,7 +155,7 @@ def _maybe_gate_part(session: Session, part: OutlineNode | None) -> None:
     text = part_text(session, part.id).lower()
     issues = []
     conflict = (part.summary or "").strip()
-    if conflict and conflict.lower() not in text:
+    if conflict and not _event_covered(text, conflict):
         issues.append("Thiếu sự kiện của phần.")
     for phrase in ("chuôi kiếm", "dark lord", "nông dân loài người"):
         if phrase in text:

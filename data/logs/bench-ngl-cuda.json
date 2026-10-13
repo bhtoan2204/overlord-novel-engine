@@ -1,0 +1,26 @@
+[
+  {
+    "gpu_layers": 0,
+    "load_s": 5.74,
+    "elapsed_s": 6.8,
+    "prompt_tokens": 39,
+    "completion_tokens": 49,
+    "tokens_per_second": 7.21,
+    "finish_reason": "stop",
+    "gpu_before": "1675 MiB, 10181 MiB, 1 %",
+    "gpu_during": "1685 MiB, 10171 MiB, 3 %",
+    "text_words": 34
+  },
+  {
+    "gpu_layers": 36,
+    "load_s": 1.38,
+    "elapsed_s": 0.63,
+    "prompt_tokens": 39,
+    "completion_tokens": 43,
+    "tokens_per_second": 68.07,
+    "finish_reason": "stop",
+    "gpu_before": "6307 MiB, 5549 MiB, 38 %",
+    "gpu_during": "6309 MiB, 5547 MiB, 62 %",
+    "text_words": 31
+  }
+]

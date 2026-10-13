@@ -69,8 +69,14 @@ def render_markdown(session: Session, project: Project) -> str:
     ]
     if not finished:
         lines.extend(["**Chưa hoàn thành. Đây không phải toàn bộ tập.**", ""])
+        if volume and (volume.continuity or {}).get("canon_coverage_status") == "partial":
+            lines.extend(["Nguồn chính sử đầy đủ chưa được nhập. Bản này là fanfiction dựa trên ghi chú đã có.", ""])
+    from app.db.models import ProseChunk
+
+    has_chunks = session.query(ProseChunk).filter(ProseChunk.project_id == project.id, ProseChunk.status == "ACCEPTED").count() > 0
     current = None
-    for chapter, scene, draft in _ordered_scenes(session, project.id):
+    ordered = [] if has_chunks else _ordered_scenes(session, project.id)
+    for chapter, scene, draft in ordered:
         if chapter.id != current:
             lines.extend([f"## {chapter.title}", "", chapter.summary, ""])
             current = chapter.id
@@ -106,6 +112,22 @@ def write_markdown(session: Session, project: Project, path: Path) -> Path:
     return path
 
 
+def _pages(session: Session, project: Project) -> list[tuple[str, str]]:
+    from app.db.models import ProseChunk
+
+    if session.query(ProseChunk).filter(ProseChunk.project_id == project.id, ProseChunk.status == "ACCEPTED").count():
+        parts = session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "part").all()
+        chapters = {row.id: row for row in session.query(OutlineNode).filter(OutlineNode.project_id == project.id, OutlineNode.level == "chapter").all()}
+        parts.sort(key=lambda row: ((chapters[row.parent_id].ordinal if row.parent_id in chapters else 0), row.ordinal))
+        pages = []
+        for part in parts:
+            body = part_text(session, part.id).strip()
+            if body:
+                pages.append((part.title, body))
+        return pages
+    return [(scene.title, draft.prose) for _chapter, scene, draft in _ordered_scenes(session, project.id)]
+
+
 def write_epub(session: Session, project: Project, path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     book = epub.EpubBook()
@@ -117,10 +139,10 @@ def write_epub(session: Session, project: Project, path: Path) -> Path:
     intro.content = f"<h1>{html.escape(project.title)}</h1><p>{html.escape(DISCLAIMER)}</p>"
     book.add_item(intro)
     items = [intro]
-    for index, (chapter, scene, draft) in enumerate(_ordered_scenes(session, project.id), start=1):
-        page = epub.EpubHtml(title=scene.title, file_name=f"scene-{index}.xhtml", lang="vi")
-        paragraphs = "".join(f"<p>{html.escape(part)}</p>" for part in draft.prose.split("\n\n"))
-        page.content = f"<h1>{html.escape(chapter.title)}</h1><h2>{html.escape(scene.title)}</h2>{paragraphs}"
+    for index, (title, body) in enumerate(_pages(session, project), start=1):
+        page = epub.EpubHtml(title=title, file_name=f"part-{index}.xhtml", lang="vi")
+        paragraphs = "".join(f"<p>{html.escape(part)}</p>" for part in body.split("\n\n"))
+        page.content = f"<h1>{html.escape(title)}</h1>{paragraphs}"
         book.add_item(page)
         items.append(page)
     book.toc = items
@@ -146,13 +168,11 @@ def write_pdf(session: Session, project: Project, path: Path, font_path: Path) -
     pdf.set_font("DejaVu", size=11)
     pdf.multi_cell(pdf.epw, 7, DISCLAIMER)
     pdf.ln(4)
-    for chapter, scene, draft in _ordered_scenes(session, project.id):
+    for title, body in _pages(session, project):
         pdf.set_font("DejaVu", size=14)
-        pdf.multi_cell(pdf.epw, 8, chapter.title)
-        pdf.set_font("DejaVu", size=12)
-        pdf.multi_cell(pdf.epw, 7, scene.title)
+        pdf.multi_cell(pdf.epw, 8, title)
         pdf.set_font("DejaVu", size=11)
-        for paragraph in draft.prose.split("\n"):
+        for paragraph in body.split("\n"):
             pdf.multi_cell(pdf.epw, 6, paragraph if paragraph.strip() else " ")
         pdf.ln(3)
     pdf.output(str(path))

@@ -109,7 +109,11 @@ class LlamaCppBackend:
             if plan.kv_cache_type and plan.kv_cache_type != "f16":
                 command.extend(["-ctk", plan.kv_cache_type, "-ctv", plan.kv_cache_type])
             environment = os.environ.copy()
-            environment["LD_LIBRARY_PATH"] = str(self._library_dir) + os.pathsep + environment.get("LD_LIBRARY_PATH", "")
+            cuda_lib = self.settings.root / "third_party" / "cuda12" / "usr" / "lib" / "x86_64-linux-gnu"
+            library_paths = [str(self._library_dir)]
+            if cuda_lib.exists():
+                library_paths.insert(0, str(cuda_lib))
+            environment["LD_LIBRARY_PATH"] = os.pathsep.join(library_paths + [environment.get("LD_LIBRARY_PATH", "")])
             log.info(
                 "starting llama-server model=%s context=%s gpu_layers=%s mode=%s",
                 key,

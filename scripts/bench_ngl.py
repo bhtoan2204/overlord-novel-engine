@@ -31,7 +31,10 @@ def gpu_row() -> str:
 def run_one(layers: int) -> dict:
     LOG.parent.mkdir(parents=True, exist_ok=True)
     environment = os.environ.copy()
-    environment["LD_LIBRARY_PATH"] = str(BIN.parent) + os.pathsep + environment.get("LD_LIBRARY_PATH", "")
+    cuda_lib = ROOT / "third_party" / "cuda12" / "usr" / "lib" / "x86_64-linux-gnu"
+    environment["LD_LIBRARY_PATH"] = os.pathsep.join(
+        [str(path) for path in (cuda_lib, BIN.parent) if path.exists()] + [environment.get("LD_LIBRARY_PATH", "")]
+    )
     command = [
         str(BIN),
         "-m",

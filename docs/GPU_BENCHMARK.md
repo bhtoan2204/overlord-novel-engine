@@ -11,4 +11,13 @@ Server-side eval speed was 6.14 tokens/second at 0 layers and 5.81 at 36 layers.
 
 `ldd third_party/llama-b11574/libggml-cuda.so` reports `libcudart.so.12 => not found` and `libcublas.so.12 => not found`. `libcuda.so.1` is present. The llama-server log does not record a CUDA device. Nothing was reinstalled. The driver being present is not GPU offload.
 
-The resource plan still prefers at most 9 GB, keeps a 3 GB reserve, and runs one request. That plan’s `mode: gpu` label is an estimate. These measurements say the process is on CPU.
+Those rows were taken before the CUDA runtime libraries were available. `libcudart.so.12` and `libcublas.so.12` were missing, so 36 layers did not leave the CPU.
+
+The libraries were then unpacked from the Ubuntu packages `libcudart12`, `libcublas12`, and `libcublaslt12` into `third_party/cuda12` (no display driver was installed). A second run of the same script, saved as `data/logs/bench-ngl-cuda.json`, measured:
+
+| GPU layers requested | Load | Completion tokens | Wall time | Tokens/second | VRAM used during |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 5.74 s | 49 | 6.8 s | 7.21 | 1685 MiB |
+| 36 | 1.38 s | 43 | 0.63 s | 68.07 | 6309 MiB, 62% utilization |
+
+The volume worker uses that library path and a planned ceiling of 11000 MB with a 1000 MB reserve. Context starts at 8192 and shrinks only if the estimate does not fit.

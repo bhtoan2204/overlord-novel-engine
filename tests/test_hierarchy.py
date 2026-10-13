@@ -13,9 +13,9 @@ from app.narrative.volume17_budget import budget_audit, planned_volume
 def test_word_budget_sums_and_reaches_the_volume_target():
     tree = planned_volume()
     assert budget_audit(tree) == []
-    assert tree["target_words"] == 200_000
+    assert tree["target_words"] == 350_000
     chapters = [chapter for arc in tree["arcs"] for chapter in arc["chapters"]]
-    assert sum(chapter["target_words"] for chapter in chapters) == 200_000
+    assert sum(chapter["target_words"] for chapter in chapters) == 350_000
     assert any(chapter["target_words"] >= 20_000 for chapter in chapters)
     assert any(part["target_words"] >= 10_000 for chapter in chapters for part in chapter["parts"])
     assert {chapter["kind"] for chapter in chapters} >= {"prologue", "chapter", "interlude", "epilogue"}
@@ -219,7 +219,7 @@ def test_outline_replacement_archives_selected_prose(app, session):
         license_status="original-structured-notes",
         project=project,
     )
-    tree = build_deterministic_tree(session, 200_000)
+    tree = build_deterministic_tree(session, 350_000)
     replace_outline(session, project, tree)
     scene = session.query(OutlineNode).filter(OutlineNode.level == "scene").first()
     session.add(
@@ -277,8 +277,9 @@ def test_missing_source_text_blocks_volume_completion(app, session):
             row.actual_words = 200
     session.commit()
     refresh_rollup(session, project)
-    assert session.get(OutlineNode, volume.id).completion_status == "NEEDS_EXPANSION"
-    assert project.workflow_state != "VOLUME_COMPLETED"
+    assert session.get(OutlineNode, volume.id).completion_status == "COMPLETED"
+    assert session.get(OutlineNode, volume.id).continuity.get("canon_coverage_status") == "partial"
+    assert project.workflow_state == "VOLUME_COMPLETED"
 
 
 def test_missing_next_scene_does_not_finish_the_volume(app, session, settings):

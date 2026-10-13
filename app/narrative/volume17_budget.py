@@ -1,6 +1,6 @@
 """Volume 17 word budget. Chapter, part, scene, and beat targets sum exactly."""
 
-VOLUME_TARGET = 200_000
+VOLUME_TARGET = 350_000
 
 # kind, title, requires, words, parts as (title, viewpoint, location, conflict, outcome, words)
 CHAPTERS = [
@@ -143,11 +143,33 @@ def split_exact(total: int, count: int) -> list[int]:
 
 
 def scene_count_for(words: int) -> int:
-    if words >= 8000:
+    if words >= 12000:
         return 8
-    if words >= 5000:
+    if words >= 8000:
         return 6
+    if words >= 5000:
+        return 5
     return 4
+
+
+def scale_to_volume(weights: list[int]) -> list[int]:
+    """Fit part weights to the volume target without leaving the 5,000–15,000 band."""
+    raw = sum(weights) or 1
+    scaled = [min(15000, max(5000, int(round(item * VOLUME_TARGET / raw)))) for item in weights]
+    drift = VOLUME_TARGET - sum(scaled)
+    cursor = 0
+    while drift != 0 and cursor < len(scaled) * 20:
+        index = cursor % len(scaled)
+        if drift > 0 and scaled[index] < 15000:
+            step = min(drift, 15000 - scaled[index])
+            scaled[index] += step
+            drift -= step
+        elif drift < 0 and scaled[index] > 5000:
+            step = min(-drift, scaled[index] - 5000)
+            scaled[index] -= step
+            drift += step
+        cursor += 1
+    return scaled
 
 
 def beat_count_for(words: int) -> int:
@@ -159,31 +181,49 @@ def beat_count_for(words: int) -> int:
     return count
 
 
+BEAT_ROLES = [
+    ("mở việc", "Việc của phần này bắt đầu bằng một hành động cụ thể, không phải một lời nhắc lệnh."),
+    ("trở ngại", "Một sự kiện cản việc. Không lặp quyết định đã chốt."),
+    ("lựa chọn", "Người điểm nhìn chọn một cách và chịu một cái giá thấy được."),
+    ("hệ quả", "Cái giá đổi tình hình ngay trong cảnh."),
+    ("tin mới", "Một dữ kiện mới xuất hiện và đổi bước sau."),
+    ("phản ứng", "Một người khác phản ứng khác, không đồng thanh với người điểm nhìn."),
+    ("quyết", "Mâu thuẫn lên mức phải chốt trong phạm vi phần này."),
+    ("chuyển", "Chốt hệ quả của phần và để ngỏ đúng một việc cho phần sau."),
+]
+
+
 def _scenes(part_title: str, viewpoint: str, location: str, conflict: str, outcome: str, words: int) -> list[dict]:
-    phases = ["Mở việc", "Đối thoại hoặc hành động", "Quyết định", "Hệ quả", "Diễn biến thêm", "Bước chuyển", "Hệ quả phụ", "Chốt phần"]
     sizes = split_exact(words, scene_count_for(words))
     scenes = []
     for index, size in enumerate(sizes, start=1):
-        phase = phases[index - 1]
+        role_name, role_text = BEAT_ROLES[(index - 1) % len(BEAT_ROLES)]
         beat_sizes = split_exact(size, beat_count_for(size))
         beats = []
         for beat_index, beat_words in enumerate(beat_sizes, start=1):
+            beat_role, beat_text = BEAT_ROLES[(beat_index - 1) % len(BEAT_ROLES)]
+            if index == 1 and beat_index == 1:
+                action = conflict
+                info = conflict
+            else:
+                action = f"{viewpoint} tại {location} làm việc «{beat_role}» của {part_title}. {beat_text}"
+                info = beat_text
             beats.append(
                 {
-                    "title": f"{part_title} — nhịp {index}.{beat_index}",
-                    "action": f"{viewpoint} tại {location}, nhịp {index}.{beat_index} của «{part_title}»: {conflict}",
-                    "purpose": phase,
-                    "new_information": conflict if beat_index == len(beat_sizes) else f"Nhịp {beat_index} của {part_title} thêm một hệ quả chưa viết.",
-                    "objective": outcome if beat_index == len(beat_sizes) else phase,
+                    "title": f"{part_title} — {beat_role} {index}.{beat_index}",
+                    "action": action,
+                    "purpose": beat_role,
+                    "new_information": info,
+                    "objective": outcome if beat_index == len(beat_sizes) else beat_text,
                     "target_words": beat_words,
                 }
             )
         scenes.append(
             {
-                "title": f"{part_title} — {phase}",
+                "title": f"{part_title} — {role_name}",
                 "viewpoint": viewpoint,
                 "location": location,
-                "objective": f"{phase}: {conflict}",
+                "objective": f"{role_name}: {conflict}",
                 "outcome": outcome,
                 "events": [conflict],
                 "target_words": size,
@@ -214,9 +254,14 @@ def planned_volume() -> dict:
         "Chương 8 — Cái giá của một vùng trống": 4,
         "Lời kết — Thế giới đã thấy": 4,
     }
+    flat_weights = [part[5] for _kind, _title, _requires, parts in CHAPTERS for part in parts]
+    scaled_weights = scale_to_volume(flat_weights)
+    weight_index = 0
     for kind, title, requires, parts in CHAPTERS:
         built_parts = []
-        for part_title, viewpoint, location, conflict, outcome, words in parts:
+        for part_title, viewpoint, location, conflict, outcome, _words in parts:
+            words = scaled_weights[weight_index]
+            weight_index += 1
             built_parts.append(
                 {
                     "title": part_title,
@@ -235,7 +280,7 @@ def planned_volume() -> dict:
                 "title": title,
                 "summary": parts[0][3],
                 "requires": requires,
-                "target_words": sum(part[5] for part in parts),
+                "target_words": sum(part["target_words"] for part in built_parts),
                 "parts": built_parts,
             }
         )

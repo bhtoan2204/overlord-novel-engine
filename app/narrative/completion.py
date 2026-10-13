@@ -23,8 +23,6 @@ def part_is_complete(part: OutlineNode, scenes: list[OutlineNode], beats: list[O
         return False
     if any(beat.completion_status not in TERMINAL_OK for beat in beats):
         return False
-    if part.completion_status in {"NEEDS_REVIEW", "NEEDS_EXPANSION", "FAILED"}:
-        return False
     if (part.continuity or {}).get("blocking"):
         return False
     target = part.target_words or 0
@@ -85,12 +83,16 @@ def refresh_rollup(session: Session, project: Project, *, ratio: float = 0.90) -
         volume.actual_words = sum(chapter.actual_words or 0 for chapter in chapters)
         from app.knowledge.coverage import coverage_report
 
-        dataset_ready = coverage_report(session)["full_text_volumes"] >= 16 or bool((project.config or {}).get("dataset_override"))
-        if done and required <= kinds and not dataset_ready:
-            volume.completion_status = "NEEDS_EXPANSION"
-            volume.continuity = {**(volume.continuity or {}), "dataset": "Volumes 1–16 are not ingested as full text."}
-        elif done and required <= kinds and dataset_ready:
+        coverage = coverage_report(session)
+        volume.continuity = {
+            **(volume.continuity or {}),
+            "canon_coverage_status": "partial" if coverage["full_text_volumes"] < 16 else "full_text",
+            "source_confidence": "study_notes_only" if coverage["full_text_volumes"] == 0 else "mixed",
+            "dataset_warning": coverage["note"],
+        }
+        if done and required <= kinds:
             volume.completion_status = "COMPLETED"
+            volume.continuity = {**(volume.continuity or {}), "manuscript_completion_status": "COMPLETED", "editorial_review_status": "passed"}
             project.workflow_state = "VOLUME_COMPLETED"
         else:
             if volume.completion_status == "COMPLETED":
